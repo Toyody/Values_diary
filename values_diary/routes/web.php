@@ -19,9 +19,14 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::middleware(['auth'])->group(function (): void {
+    Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resources([
-    'posts' => 'PostsController',
-    'values' => 'ValuesController',
-]);
+    Route::get('/about', 'AboutController@index')->name('about');
+
+    Route::resources([
+        'posts' => 'PostsController',
+        'values' => 'ValuesController',
+        'users' => 'UsersController',
+    ]);
+});

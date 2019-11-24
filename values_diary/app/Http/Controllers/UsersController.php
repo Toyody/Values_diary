@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 
-class PostsController extends Controller
+class UsersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +16,6 @@ class PostsController extends Controller
      */
     public function index()
     {
-        return view('posts.index');
     }
 
     /**
@@ -25,7 +25,6 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
     }
 
     /**
@@ -41,11 +40,15 @@ class PostsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param int   $id
+     * @param mixed $user_id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($user_id)
     {
+        $user = User::where('id', $user_id)->firstOrFail();
+
+        return view('users.show', ['user' => $user]);
     }
 
     /**

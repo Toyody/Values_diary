@@ -12,66 +12,107 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.2.3/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.2.3/dist/js/uikit-icons.min.js"></script>
+
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.2.3/dist/css/uikit.min.css" />
+
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
+        <nav class="uk-navbar-container uk-margin" uk-navbar>
+            @auth
+                <div class="uk-navbar-left">
+                    <a class="uk-navbar-item uk-logo" href="{{ route('home') }}">
+                    {{ Auth::user()->name }}の価値観日記
+                    </a>
+                </div>
+                <div class="uk-navbar-right">
+                    <ul class="uk-navbar-nav">
+                        <!-- <li>
+                            <a href="{{ route('posts.index') }}" >
+                                <span class="uk-icon uk-margin-small-right" uk-icon="home"></span>
+                                ホーム
+                            </a>
+                        </li> -->
+                        <li>
+                            <a href="{{ route('about') }}" >
+                                <span class="uk-icon uk-margin-small-right" uk-icon="info"></span>
+                                価値観日記とは
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('posts.index') }}" >
+                                <span class="uk-icon uk-margin-small-right" uk-icon="album"></span>
+                                日記一覧
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('posts.create') }}" >
+                                <span class="uk-icon uk-margin-small-right" uk-icon="file-edit"></span>
+                                日記投稿
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('values.index') }}" >
+                                <span class="uk-icon uk-margin-small-right" uk-icon="list"></span>
+                                価値観
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/users/{{ Auth::user()->id }}">
+                                <span class="uk-icon uk-margin-small-right" uk-icon="user"></span>
+                                プロフィール
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                                <span class="uk-icon uk-margin-small-right" uk-icon="sign-out"></span>
+                                ログアウト
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </li>
                     </ul>
                 </div>
-            </div>
+            @else
+                <div class="uk-navbar-left">
+                    <a class="uk-navbar-item uk-logo" href="/">
+                        価値観日記
+                    </a>
+                </div>
+                <div class="uk-navbar-right">
+                    <ul class="uk-navbar-nav">
+                        <li>
+                            <a href="{{ route('login') }}">
+                                <span class="uk-icon uk-margin-small-right" uk-icon="sign-in"></span>
+                                ログイン
+                            </a>
+                        </li>
+                        @if (Route::has('register'))
+                            <li>
+                                <a href="{{ route('register') }}">
+                                    <span class="uk-icon uk-margin-small-right" uk-icon="plus"></span>
+                                    新規登録
+                                </a>
+                            </li>
+                        @endif
+                    </ul>
+                </div>
+            @endauth
         </nav>
-
         <main class="py-4">
             @yield('content')
         </main>

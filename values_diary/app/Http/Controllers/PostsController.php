@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Post;
+use Auth;
 use Illuminate\Http\Request;
 
 class PostsController extends Controller
@@ -15,7 +17,12 @@ class PostsController extends Controller
      */
     public function index()
     {
-        return view('posts.index');
+        $posts = Post::where('user_id', Auth::user()->id)
+            ->limit(30)
+            ->latest()
+            ->get();
+
+        return view('posts.index', ['posts' => $posts]);
     }
 
     /**
@@ -36,6 +43,22 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
+        // バリデーションチェック
+
+        $post = new Post;
+        $post->user_id = Auth::user()->id;
+        $post->value_tag = $request->value_tag;
+        $post->actions_for_value = $request->actions_for_value;
+        $post->score = $request->score;
+        $post->good_things = $request->good_things;
+        $post->troubles = $request->troubles;
+        $post->memo = $request->memo;
+
+        $post->save();
+
+        session()->flash('flash_message', '投稿が完了しました');
+
+        return redirect('/posts');
     }
 
     /**

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Value;
+use Auth;
 use Illuminate\Http\Request;
 
 class ValuesController extends Controller
@@ -15,7 +17,12 @@ class ValuesController extends Controller
      */
     public function index()
     {
-        return view('values.index');
+        $values = Value::where('user_id', Auth::user()->id)
+            ->limit(10)
+            ->latest()
+            ->get();
+
+        return view('values.index', ['values' => $values]);
     }
 
     /**
@@ -25,6 +32,7 @@ class ValuesController extends Controller
      */
     public function create()
     {
+        return view('values.create');
     }
 
     /**
@@ -35,6 +43,18 @@ class ValuesController extends Controller
      */
     public function store(Request $request)
     {
+        //バリデーションチェック
+
+        $value = new Value;
+        $value->user_id = Auth::user()->id;
+        $value->value = $request->value;
+        $value->reason = $request->reason;
+
+        $value->save();
+
+        session()->flash('flash_message', '価値観を追加しました');
+
+        return redirect('/values');
     }
 
     /**

@@ -16,11 +16,10 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table): void {
             $table->bigIncrements('id');
             $table->integer('user_id');
-            $table->string('title')->nullable();
-            $table->string('post_image')->nullable();
-            $table->text('good_things');
+            $table->string('value_tag');
             $table->text('actions_for_value');
             $table->integer('score');
+            $table->text('good_things')->nullable();
             $table->text('troubles')->nullable();
             $table->text('memo')->nullable();
             $table->timestamps();

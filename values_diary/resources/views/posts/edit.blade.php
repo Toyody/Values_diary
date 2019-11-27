@@ -75,7 +75,7 @@
         </form>
         <a href="{{ route('posts.show', ['post' => $post]) }}">
           <button class="uk-input uk-button uk-button-default">
-            戻る
+            キャンセル
           </button>
         </a>
       </div>

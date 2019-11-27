@@ -69,6 +69,9 @@ class PostsController extends Controller
      */
     public function show($id)
     {
+        $post = Post::where('id', $id)->firstOrFail();
+
+        return view('posts.show', ['post' => $post]);
     }
 
     /**
@@ -79,6 +82,8 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
+        $post = Post::find($id);
+        return view('posts.edit', ['post' => $post]);
     }
 
     /**
@@ -90,6 +95,21 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $post = Post::find($id);
+        // dd($post);
+        $post->value_tag = $request->value_tag;
+        $post->actions_for_value = $request->actions_for_value;
+        $post->score = $request->score;
+        $post->good_things = $request->good_things;
+        $post->troubles = $request->troubles;
+        $post->memo = $request->memo;
+
+        $post->save();
+
+        session()->flash('flash_message', '日記を編集しました');
+
+        return redirect()->route('posts.show', ['post' => $post]);
+
     }
 
     /**

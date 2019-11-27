@@ -75,6 +75,8 @@ class ValuesController extends Controller
      */
     public function edit($id)
     {
+        $value = Value::find($id);
+        return view('values.edit', ['value' => $value]);
     }
 
     /**
@@ -86,6 +88,15 @@ class ValuesController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $value = Value::find($id);
+        $value->value = $request->value;
+        $value->reason = $request->reason;
+
+        $value->save();
+
+        session()->flash('flash_message', '価値観を編集しました');
+
+        return redirect('/values');
     }
 
     /**
@@ -96,5 +107,9 @@ class ValuesController extends Controller
      */
     public function destroy($id)
     {
+        $value = Value::findOrFail($id);
+        $value->delete();
+        session()->flash('flash_message', '価値観を削除しました');
+        return redirect('/values');
     }
 }

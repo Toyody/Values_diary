@@ -34,7 +34,10 @@
             @auth
                 <div class="uk-navbar-left">
                     <a class="uk-navbar-item uk-logo" href="{{ route('home') }}">
-                    {{ Auth::user()->name }}の価値観日記
+                        @if (Auth::user()->profile_image)
+                            <img src="/storage/images/{{ Auth::id() }}.jpg" width="50px" height="50px" alt="avatar" style="border-radius: 50%; margin: 15px">
+                        @endif
+                        {{ Auth::user()->name }}の価値観日記
                     </a>
                 </div>
                 <div class="uk-navbar-right">

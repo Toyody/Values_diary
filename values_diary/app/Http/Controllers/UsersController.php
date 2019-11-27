@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
@@ -59,6 +60,8 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
+        $user = User::find($id);
+        return view('users.edit', ['user' => $user]);
     }
 
     /**
@@ -70,6 +73,18 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->profile_image = $request->profile_image->storeAs('public/images', Auth::id() . '.jpg');
+        $user->email = $request->email;
+        $user->ideal = $request->ideal;
+
+        $user->save();
+
+        session()->flash('flash_message', 'プロフィールを編集しました');
+
+        return redirect()->route('users.show', ['user' => $user]);
+
     }
 
     /**

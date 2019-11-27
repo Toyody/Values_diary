@@ -25,9 +25,13 @@
                   </div>
               </div>
               <input class="uk-input uk-button-primary uk-margin" type="submit" value="追加">
-
           </fieldset>
         </form>
+        <a href="{{ route('values.index') }}" style="text-decoration: none;">
+          <button class="uk-input uk-button-default">
+            キャンセル
+          </button>
+        </a>
       </div>
     </div>
   </div>

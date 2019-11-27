@@ -20,7 +20,11 @@
           <div class="uk-child-width-1-3@m uk-text-center" uk-grid>
             @foreach ($posts as $post)
               <div>
-                <div class="uk-card uk-card-default uk-card-body uk-card-hover">{{ $post->created_at->format('Y/m/d') }}</div>
+                <a href="{{ route('posts.show', ['post' => $post]) }}" style="text-decoration: none;">
+                  <div class="uk-card uk-card-default uk-card-body uk-card-hover">
+                    {{ $post->created_at->format('Y/m/d') }}
+                  </div>
+                </a>
               </div>
             @endforeach
           </div>

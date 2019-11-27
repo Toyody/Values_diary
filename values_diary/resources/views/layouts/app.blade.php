@@ -10,7 +10,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}"></script>
 
     <!-- UIkit JS -->
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.2.3/dist/js/uikit.min.js"></script>
@@ -39,12 +39,6 @@
                 </div>
                 <div class="uk-navbar-right">
                     <ul class="uk-navbar-nav">
-                        <!-- <li>
-                            <a href="{{ route('posts.index') }}" >
-                                <span class="uk-icon uk-margin-small-right" uk-icon="home"></span>
-                                ホーム
-                            </a>
-                        </li> -->
                         <li>
                             <a href="{{ route('about') }}" >
                                 <span class="uk-icon uk-margin-small-right" uk-icon="info"></span>
@@ -117,5 +111,8 @@
             @yield('content')
         </main>
     </div>
+
+    @yield('scripts')
+
 </body>
 </html>

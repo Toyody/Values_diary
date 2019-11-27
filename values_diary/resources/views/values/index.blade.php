@@ -27,16 +27,44 @@
               <tr>
                   <td>{{ $value->value }}</td>
                   <td>{{ $value->reason }}</td>
+                  <td>
+                    <div class="uk-align-right">
+                      <a href="{{ route('values.edit', ['value' => $value]) }}" style="text-decoration: none;">
+                        <button class="uk-button uk-button-default">
+                          編集
+                        </button>
+                      </a>
+
+                      <button class="uk-button uk-button-danger" uk-toggle="target: #delete_button">削除</button>
+
+                      <!-- 削除用モーダル -->
+                      <div id="delete_button" uk-modal>
+                        <div class="uk-modal-dialog uk-modal-body">
+                          <p>本当に削除してもよろしいですか？</p>
+                          <div class="uk-align-right">
+                            <form action="{{ route('values.destroy', ['value' => $value]) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button class="uk-button uk-button-default uk-modal-close">キャンセル</button>
+                                <button class="uk-button uk-button-danger">
+                                  削除する
+                                </button>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
               </tr>
-            @endforeach
-          </tbody>
-        </table>
+              @endforeach
+            </tbody>
+          </table>
+        </div>
       </div>
+      <a href="{{ route('values.create') }}">
+        <button class="uk-button uk-button-primary uk-align-center uk-margin-medium-top">
+            価値観を追加
+        </button>
+      </a>
     </div>
-  </div>
-  <a href="{{ route('values.create') }}">
-    <button class="uk-button uk-button-primary uk-align-center uk-margin-medium-top">
-        価値観を追加
-    </button>
-  </a>
 @endsection

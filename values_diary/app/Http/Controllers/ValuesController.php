@@ -18,9 +18,8 @@ class ValuesController extends Controller
     public function index()
     {
         $values = Value::where('user_id', Auth::user()->id)
-            ->limit(10)
             ->latest()
-            ->get();
+            ->paginate(12);
 
         return view('values.index', ['values' => $values]);
     }
@@ -65,6 +64,9 @@ class ValuesController extends Controller
      */
     public function show($id)
     {
+        $value = Value::where('id', $id)->firstOrFail();
+
+        return view('values.show', ['value' => $value]);
     }
 
     /**
@@ -96,7 +98,7 @@ class ValuesController extends Controller
 
         session()->flash('flash_message', '価値観を編集しました');
 
-        return redirect('/values');
+        return redirect()->route('values.show', ['value' => $value]);
     }
 
     /**

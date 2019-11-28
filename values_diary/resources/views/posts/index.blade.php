@@ -12,12 +12,14 @@
       </div>
     @endif
 
-  <div class="uk-container">
-    <h2>投稿一覧</h2>
+    <div class="uk-container">
+      <h2>投稿一覧</h2>
     <div class="uk-grid-match">
       <div class="uk-grid">
         <div class="uk-width-2-3">
-          <div class="uk-child-width-1-3@m uk-text-center" uk-grid>
+          {{ $posts->links('../pagination.default') }}
+          <hr>
+          <div class="uk-child-width-1-3 uk-text-center" uk-grid>
             @foreach ($posts as $post)
               <div>
                 <a href="{{ route('posts.show', ['post' => $post]) }}" style="text-decoration: none;">
@@ -28,6 +30,8 @@
               </div>
             @endforeach
           </div>
+          <hr>
+          {{ $posts->links('../pagination.default') }}
         </div>
         <aside class="uk-width-1-3">
           <div class="uk-card uk-card-default uk-card-body">

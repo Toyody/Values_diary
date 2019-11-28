@@ -29,7 +29,7 @@
               
             </fieldset>
           </form>
-          <a href="{{ route('values.index') }}" style="text-decoration: none;">
+          <a href="{{ route('values.show', ['value' => $value]) }}" style="text-decoration: none;">
             <button class="uk-input uk-button-default">
               キャンセル
             </button>

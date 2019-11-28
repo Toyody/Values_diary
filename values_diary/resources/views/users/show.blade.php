@@ -13,7 +13,7 @@
   @endif
 
   <div class="uk-container">
-    <div class="uk-card uk-card-default uk-width-3-5@s uk-align-center">
+    <div class="uk-card uk-card-default uk-width-3-5 uk-align-center">
       <div class="uk-card-body">
         <h1 style="display: inline;">プロフィール</h1>
         <div class="uk-align-right">
@@ -27,8 +27,8 @@
         <dl class="uk-description-list uk-description-list-divider uk-text-lead">
             <dt>名前</dt><br>
             <dd>{{ $user->name }}</dd>
+            <dt>写真</dt><br>
             @if ($user->profile_image)
-              <dt>写真</dt><br>
               <dd>
                 <img src="/storage/images/{{ Auth::id() }}.jpg" width="100px" height="100px" alt="avatar" style="border-radius: 50%;">
               </dd>

@@ -18,9 +18,8 @@ class PostsController extends Controller
     public function index()
     {
         $posts = Post::where('user_id', Auth::user()->id)
-            ->limit(30)
             ->latest()
-            ->get();
+            ->paginate(15);
 
         return view('posts.index', ['posts' => $posts]);
     }
@@ -96,7 +95,6 @@ class PostsController extends Controller
     public function update(Request $request, $id)
     {
         $post = Post::find($id);
-        // dd($post);
         $post->value_tag = $request->value_tag;
         $post->actions_for_value = $request->actions_for_value;
         $post->score = $request->score;

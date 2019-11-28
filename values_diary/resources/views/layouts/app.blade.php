@@ -67,7 +67,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/users/{{ Auth::user()->id }}">
+                            <a href="/users/{{ Auth::id() }}">
                                 <span class="uk-icon uk-margin-small-right" uk-icon="user"></span>
                                 プロフィール
                             </a>

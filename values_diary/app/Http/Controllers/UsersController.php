@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\User;
+use Auth;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
@@ -75,7 +75,17 @@ class UsersController extends Controller
     {
         $user = User::find($id);
         $user->name = $request->name;
-        $user->profile_image = $request->profile_image->storeAs('public/images', Auth::id() . '.jpg');
+
+        if ($request->delete_image)
+        {
+            $user->profile_image = null;
+        }
+
+        if ($request->hasfile('profile_image'))
+        {
+            $user->profile_image = $request->profile_image->storeAs('public/images', Auth::id() . '.jpg');
+        }
+        
         $user->email = $request->email;
         $user->ideal = $request->ideal;
 

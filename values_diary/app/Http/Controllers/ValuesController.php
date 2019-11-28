@@ -17,7 +17,7 @@ class ValuesController extends Controller
      */
     public function index()
     {
-        $values = Value::where('user_id', Auth::user()->id)
+        $values = Value::where('user_id', Auth::id())
             ->latest()
             ->paginate(12);
 
@@ -45,7 +45,7 @@ class ValuesController extends Controller
         //バリデーションチェック
 
         $value = new Value;
-        $value->user_id = Auth::user()->id;
+        $value->user_id = Auth::id();
         $value->value = $request->value;
         $value->reason = $request->reason;
 

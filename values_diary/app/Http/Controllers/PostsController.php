@@ -17,7 +17,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts = Post::where('user_id', Auth::user()->id)
+        $posts = Post::where('user_id', Auth::id())
             ->latest()
             ->paginate(15);
 
@@ -45,7 +45,7 @@ class PostsController extends Controller
         // バリデーションチェック
 
         $post = new Post;
-        $post->user_id = Auth::user()->id;
+        $post->user_id = Auth::id();
         $post->value_tag = $request->value_tag;
         $post->actions_for_value = $request->actions_for_value;
         $post->score = $request->score;

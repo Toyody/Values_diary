@@ -33,7 +33,9 @@
                   <label class="uk-form-label" for="profile_image">写真</label>
                   @if ($user->profile_image)
                     <img src="/storage/images/{{ Auth::id() }}.jpg" width="100px" height="100px" alt="avatar" style="border-radius: 50%;">
-                    <p style="margin-top: 0;">現在の写真</p>
+                    <p>
+                      <label class="uk-form-label" for="delete_image"><input class="uk-checkbox" type="checkbox" name="delete_image">現在の写真を削除する</label>
+                    </p>
                   @endif
                   <div class="uk-form-controls">
                     <input type="file" id="profile_image" name="profile_image" value="{{ $user->profile_image }}">
@@ -41,14 +43,14 @@
               </div>
 
               <div class="uk-margin-medium">
-                  <label class="uk-form-label" for="value">メールアドレス</label>
+                  <label class="uk-form-label" for="email">メールアドレス</label>
                   <div class="uk-form-controls">
                     <input class="uk-input" type="text" id="email" name="email" value="{{ $user->email }}">
                   </div>
               </div>
 
               <div class="uk-margin-medium">
-                  <label class="uk-form-label" for="reason">どんな自分でありたいか</label>
+                  <label class="uk-form-label" for="ideal">どんな自分でありたいか</label>
                   <div class="uk-form-controls">
                       <textarea class="uk-textarea" rows="5" id="ideal" name="ideal">{{ $user->ideal }}</textarea>
                   </div>

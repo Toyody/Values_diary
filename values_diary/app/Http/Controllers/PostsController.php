@@ -107,7 +107,6 @@ class PostsController extends Controller
         session()->flash('flash_message', '日記を編集しました');
 
         return redirect()->route('posts.show', ['post' => $post]);
-
     }
 
     /**

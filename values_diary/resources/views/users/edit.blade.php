@@ -32,7 +32,7 @@
               <div class="uk-margin-medium">
                   <label class="uk-form-label" for="profile_image">写真</label>
                   @if ($user->profile_image)
-                    <img src="/storage/images/{{ Auth::id() }}.jpg" width="100px" height="100px" alt="avatar" style="border-radius: 50%;">
+                    <img src="/storage/images/{{ $user->profile_image }}" width="100px" height="100px" alt="avatar" style="border-radius: 50%;">
                     <p>
                       <label class="uk-form-label" for="delete_image"><input class="uk-checkbox" type="checkbox" name="delete_image">現在の写真を削除する</label>
                     </p>

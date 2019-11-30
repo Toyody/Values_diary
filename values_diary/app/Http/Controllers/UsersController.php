@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\User;
-use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class UsersController extends Controller
 {
@@ -76,16 +76,17 @@ class UsersController extends Controller
         $user = User::find($id);
         $user->name = $request->name;
 
-        if ($request->delete_image)
-        {
+        if ($request->delete_image) {
+            Storage::delete('public/images/' . $user->profile_image);
             $user->profile_image = null;
         }
 
-        if ($request->hasfile('profile_image'))
-        {
-            $user->profile_image = $request->profile_image->storeAs('public/images', Auth::id() . '.jpg');
+        if ($request->hasfile('profile_image')) {
+            Storage::delete('public/images/' . $user->profile_image);
+            $filename = $request->profile_image->store('public/images');
+            $user->profile_image = basename($filename);
         }
-        
+
         $user->email = $request->email;
         $user->ideal = $request->ideal;
 
@@ -94,7 +95,6 @@ class UsersController extends Controller
         session()->flash('flash_message', 'プロフィールを編集しました');
 
         return redirect()->route('users.show', ['user' => $user]);
-
     }
 
     /**

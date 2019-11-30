@@ -1,20 +1,20 @@
 <?php
 
-use Illuminate\Database\Seeder;
+declare(strict_types=1);
+
 use App\User;
+use Illuminate\Database\Seeder;
 
 class UsersTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         // 一括削除
         User::truncate();
-        
+
         DB::table('users')->insert([
             'name' => 'toyody',
             'email' => 'toyody0420@gmail.com',

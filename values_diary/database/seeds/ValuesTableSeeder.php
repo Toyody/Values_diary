@@ -1,16 +1,16 @@
 <?php
 
-use Illuminate\Database\Seeder;
+declare(strict_types=1);
+
 use App\Value;
+use Illuminate\Database\Seeder;
 
 class ValuesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         factory(Value::class, 35)->create();
     }

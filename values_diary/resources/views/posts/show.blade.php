@@ -17,21 +17,44 @@
       <div class="uk-card-body">
         <h1 style="display: inline">{{ $post->created_at->format('Y/m/d') }}</h1>
         <div class="uk-align-right">
-          <a href="{{ route('posts.index') }}" style="text-decoration: none;">
-            <button class="uk-button uk-button-default">
-              戻る
-            </button>
-          </a>
-          <a href="{{ route('posts.edit', ['post' => $post]) }}" style="text-decoration: none;">
-            <button class="uk-button uk-button-default">
-              編集
-            </button>
-          </a>
-          <!-- ゴミ箱アイコン -->
-          <a href="">
-            <button class="uk-button uk-button-danger" uk-icon="trash">
-            </button>
-          </a>
+          <!-- 論理削除前の場合 -->
+          @if (!$post->trashed())
+            <a href="{{ route('posts.index') }}" style="text-decoration: none;">
+              <button class="uk-button uk-button-default">
+                戻る
+              </button>
+            </a>
+            <a href="{{ route('posts.edit', ['post' => $post]) }}" style="text-decoration: none;">
+              <button class="uk-button uk-button-default">
+                編集
+              </button>
+            </a>
+            <form action="{{ route('posts.destroy' , ['post' => $post]) }}" method="POST" style="display: inline">
+              @csrf
+              @method('DELETE')
+              <button type="submit" class="uk-button uk-button-danger" uk-icon="trash">
+                <!-- ここにゴミ箱アイコン -->
+              </button>
+            </form>
+          @else
+            <!-- 論理削除後の場合 -->
+            <a href="{{ route('trashed-posts.index') }}" style="text-decoration: none;">
+              <button class="uk-button uk-button-default">
+                戻る
+              </button>
+            </a>
+            <form action="{{ route('posts.restore', ['post' => $post]) }}" method="POST" style="display: inline">
+              @csrf
+              <button type="submit" class="uk-button uk-button-default">復元
+              </button>
+            </form>
+            <form action="{{ route('posts.destroy' , ['post' => $post]) }}" method="POST" style="display: inline">
+              @csrf
+              @method('DELETE')
+              <button type="submit" class="uk-button uk-button-danger">削除
+              </button>
+            </form>
+          @endif
         </div>
         
         <hr>
@@ -50,11 +73,21 @@
             <dd>{{ $post->memo }}</dd>
         </dl>
         <hr>
-        <a href="{{ route('posts.index') }}" style="text-decoration: none;">
-          <button class="uk-input uk-button-default">
-            戻る
-          </button>
-        </a>
+        <!-- 論理削除前の場合 -->
+        @if (!$post->trashed())
+          <a href="{{ route('posts.index') }}" style="text-decoration: none;">
+            <button class="uk-input uk-button-default">
+              戻る
+            </button>
+          </a>
+        @else
+        <!-- 論理削除後の場合 -->
+          <a href="{{ route('trashed-posts.index') }}" style="text-decoration: none;">
+            <button class="uk-input uk-button-default">
+              戻る
+            </button>
+          </a>
+        @endif
       </div>
     </div>
   </div>

@@ -21,7 +21,13 @@ class PostsController extends Controller
             ->latest()
             ->paginate(15);
 
-        return view('posts.index', ['posts' => $posts]);
+        $data = [
+            'posts' => $posts,
+            'title' => '投稿一覧',
+            'sentence' => '日記はまだありません',
+        ];
+
+        return view('posts.index', $data);
     }
 
     /**
@@ -68,7 +74,9 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        $post = Post::where('id', $id)->firstOrFail();
+        $post = Post::withTrashed()
+            ->where('id', $id)
+            ->firstOrFail();
 
         return view('posts.show', ['post' => $post]);
     }
@@ -117,5 +125,72 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
+        $post = Post::withTrashed()
+            ->where('id', $id)
+            ->firstOrFail();
+
+        if ($post->trashed()) {
+            $post->forceDelete();
+
+            session()->flash('flash_message', '日記を削除しました');
+
+            return redirect()->route('trashed-posts.index');
+        }
+
+        $post->delete();
+
+        session()->flash('flash_message', '日記をゴミ箱に入れました');
+
+        return redirect()->route('posts.index');
+    }
+
+    /**
+     * ゴミ箱の日記一覧.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function trashed()
+    {
+        $trashed = Post::onlyTrashed()
+            ->where('user_id', Auth::id())
+            ->latest()
+            ->paginate(15);
+
+        $data = [
+            'posts' => $trashed,
+            'title' => 'ゴミ箱',
+            'sentence' => 'ゴミ箱は空です',
+        ];
+
+        return view('posts.index', $data);
+    }
+
+    /**
+     * ゴミ箱内の日記を復元.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function restoreTrashedPost(Request $request)
+    {
+        Post::onlyTrashed()->restore();
+
+        session()->flash('flash_message', '日記を復元しました');
+
+        return redirect()->route('trashed-posts.index');
+    }
+
+    /**
+     * ゴミ箱内の日記を全削除.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function clearTrashedPost(Request $request)
+    {
+        Post::onlyTrashed()->forceDelete();
+        session()->flash('flash_message', 'ゴミ箱を空にしました');
+
+        return redirect()->route('trashed-posts.index');
     }
 }

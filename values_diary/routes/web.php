@@ -29,4 +29,10 @@ Route::middleware(['auth'])->group(function (): void {
         'values' => 'ValuesController',
         'users' => 'UsersController',
     ]);
+
+    Route::get('/trashed-posts', 'PostsController@trashed')->name('trashed-posts.index');
+
+    Route::post('/restore/{post}', 'PostsController@restoreTrashedPost')->name('posts.restore');
+
+    Route::post('/trashed-posts/clear', 'PostsController@clearTrashedPost')->name('trashed-posts.clear');
 });

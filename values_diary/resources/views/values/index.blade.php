@@ -13,15 +13,17 @@
   @endif
   
   <div class="uk-container">
-    <h2 style="display: inline">価値観一覧</h2>
-    <div class="uk-align-right">
-      <a href="{{ route('values.create') }}">
+    <h2 style="display: inline;">価値観一覧</h2>
+    <div class="uk-align-right" style="margin: 0;">
+      <a href="{{ route('values.create') }}" >
         <button class="uk-button uk-button-primary">
             価値観を追加
         </button>
       </a>
     </div>
+    {{ $values->links('../pagination.default') }}
     <hr>
+
     <div uk-grid="masonry: true">
       <div class="uk-grid">
         <div class="uk-child-width-1-3 uk-text-center" uk-grid>

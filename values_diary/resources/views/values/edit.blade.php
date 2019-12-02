@@ -5,6 +5,15 @@
   <div class="uk-container">
     <div class="uk-card uk-card-default uk-width-3-5@s uk-align-center">
       <div class="uk-card-body">
+        <h1 style="display: inline;">日記を書く</h1>
+        <div class="uk-align-right" style="margin: 0;">
+          <a href="{{ route('values.show', ['value' => $value]) }}" style="text-decoration: none;">
+            <button class="uk-button uk-button-default">
+              戻る
+            </button>
+          </a>
+        </div>
+        <hr>
         <form class="uk-form-stacked" action="{{ route('values.update', ['value' => $value]) }}" method="POST">
           @csrf
           @method('PUT')

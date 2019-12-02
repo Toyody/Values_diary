@@ -5,22 +5,22 @@
   <div class="uk-container">
     <div class="uk-card uk-card-default uk-width-3-5@s uk-align-center">
       <div class="uk-card-body">
-        <!-- 戻るボタンをここと編集ページの両方に実装する -->
-        <!-- 価値観の編集ページも参考にする -->
-        <!-- <div class="uk-align-right">
+        <h1 style="display: inline;">日記を書く</h1>
+        <div class="uk-align-right" style="margin: 0;">
           <a href="{{ route('posts.index') }}" style="text-decoration: none;">
             <button class="uk-button uk-button-default">
               戻る
             </button>
           </a>
-        </div> -->
+        </div>
 
         @if ($values->count() > 0)
-        <form class="uk-form-stacked" action="{{ route('posts.store') }}" method="POST">
+          <hr>
+          <form class="uk-form-stacked" action="{{ route('posts.store') }}" method="POST">
             @csrf
-            <fieldset class="uk-fieldset">
+              <fieldset class="uk-fieldset">
 
-                <legend class="uk-legend">今日の日記</legend>
+                <legend class="uk-legend">{{ now()->format('Y/m/d') }}</legend>
 
                   <div class="uk-margin-medium">
                     <label class="uk-form-label" for="value_tags">価値観（設定済みの価値観から１つ以上を選択）</label>
@@ -80,10 +80,16 @@
                   <input class="uk-input uk-button-primary uk-margin" type="submit" value="投稿">
                 </fieldset>
               </form>
-              @else
-                <h3>価値観がありません</h3>
-                <strong>まずは価値観を追加しましょう</strong>
-              @endif
+              <a href="{{ route('posts.index') }}" style="text-decoration: none;">
+                <button class="uk-input uk-button-default">
+                  キャンセル
+                </button>
+              </a>
+
+        @else
+          <h3>価値観がありません</h3>
+          <strong>まずは価値観を追加しましょう</strong>
+        @endif
       </div>
     </div>
   </div>

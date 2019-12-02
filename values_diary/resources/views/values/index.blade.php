@@ -17,28 +17,32 @@
     <div class="uk-align-right" style="margin: 0;">
       <a href="{{ route('values.create') }}" >
         <button class="uk-button uk-button-primary">
-            価値観を追加
+          <span uk-icon="pencil"></span>
+          価値観を追加
         </button>
       </a>
     </div>
     {{ $values->links('../pagination.default') }}
     <hr>
-
-    <div uk-grid="masonry: true">
-      <div class="uk-grid">
-        <div class="uk-child-width-1-3 uk-text-center" uk-grid>
-          @foreach ($values as $value)
-            <div>
-              <a href="{{ route('values.show', ['value' => $value]) }}" style="text-decoration: none;">
-                <div class="uk-card uk-card-default uk-card-body uk-card-hover">
-                  <h3 class="uk-card-title">{{ $value->value }}</h3>
-                </div>
-              </a>
-            </div>
-          @endforeach
+    @if ($values->count() > 0)
+      <div uk-grid="masonry: true">
+        <div class="uk-grid">
+          <div class="uk-child-width-1-3 uk-text-center" uk-grid>
+            @foreach ($values as $value)
+              <div>
+                <a href="{{ route('values.show', ['value' => $value]) }}" style="text-decoration: none;">
+                  <div class="uk-card uk-card-default uk-card-body uk-card-hover">
+                    <h3 class="uk-card-title">{{ $value->value }}</h3>
+                  </div>
+                </a>
+              </div>
+            @endforeach
+          </div>
         </div>
       </div>
-    </div>
+    @else
+      <h3 class="uk-text-center">{{ $sentence }}</h3>
+    @endif
     <hr>
     {{ $values->links('../pagination.default') }}
   </div>

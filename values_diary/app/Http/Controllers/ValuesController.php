@@ -21,7 +21,12 @@ class ValuesController extends Controller
             ->latest()
             ->paginate(12);
 
-        return view('values.index', ['values' => $values]);
+        $data = [
+            'values' => $values,
+            'sentence' => '価値観はまだありません',
+        ];
+
+        return view('values.index', $data);
     }
 
     /**

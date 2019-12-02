@@ -60,7 +60,7 @@
         <hr>
         <dl class="uk-description-list uk-description-list-divider uk-text-lead">
             <dt>価値観</dt><br>
-            <dd>{{ $post->value_tag }}</dd>
+            <dd>{{ $post->value_tags }}</dd>
             <dt>価値観に基づいた行動</dt><br>
             <dd>{{ $post->actions_for_value }}</dd>
             <dt>何点？</dt><br>

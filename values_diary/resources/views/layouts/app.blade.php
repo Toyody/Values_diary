@@ -16,7 +16,6 @@
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.2.3/dist/js/uikit.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.2.3/dist/js/uikit-icons.min.js"></script>
 
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -26,6 +25,8 @@
 
     <!-- UIkit CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.2.3/dist/css/uikit.min.css" />
+
+    @yield('css')
 
 </head>
 <body>
@@ -52,19 +53,20 @@
                         <li>
                             <a href="{{ route('posts.index') }}" >
                                 <span class="uk-icon uk-margin-small-right" uk-icon="album"></span>
-                                日記一覧
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('posts.create') }}" >
-                                <span class="uk-icon uk-margin-small-right" uk-icon="file-edit"></span>
-                                日記投稿
+                                日記
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('values.index') }}" >
                                 <span class="uk-icon uk-margin-small-right" uk-icon="list"></span>
+                                <!-- fontawsomeのグラフアイコンを使う -->
                                 価値観
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" >
+                                <span class="uk-icon uk-margin-small-right" uk-icon="star"></span>
+                                グラフ
                             </a>
                         </li>
                         <li>

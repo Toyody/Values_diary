@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Value;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -37,7 +38,11 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        $data = [
+            'values' => Value::all(),
+        ];
+
+        return view('posts.create', $data);
     }
 
     /**
@@ -49,17 +54,21 @@ class PostsController extends Controller
     public function store(Request $request)
     {
         // バリデーションチェック
+        $array = $request->value_tags;
+        $str = implode("、", $array);
 
-        $post = new Post;
-        $post->user_id = Auth::id();
-        $post->value_tag = $request->value_tag;
-        $post->actions_for_value = $request->actions_for_value;
-        $post->score = $request->score;
-        $post->good_things = $request->good_things;
-        $post->troubles = $request->troubles;
-        $post->memo = $request->memo;
+        $post = Post::create([
+            'user_id' => Auth::id(),
+            'value_tags' => $str,
+            'actions_for_value' => $request->actions_for_value,
+            'score' => $request->score,
+            'good_things' => $request->good_things,
+            'troubles' => $request->troubles,
+            'memo' => $request->memo,
+        ]);
+        $post->values()->attach($str);
+        // $post->save(); 上記の書き方では不要？fillable含め調べよう
 
-        $post->save();
 
         session()->flash('flash_message', '投稿が完了しました');
 
@@ -78,7 +87,13 @@ class PostsController extends Controller
             ->where('id', $id)
             ->firstOrFail();
 
-        return view('posts.show', ['post' => $post]);
+        $data = [
+            'values' => Value::all(),
+            'post' => $post,
+        ];
+    
+
+        return view('posts.show', $data);
     }
 
     /**
@@ -90,7 +105,12 @@ class PostsController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
-        return view('posts.edit', ['post' => $post]);
+        $data = [
+            'values' => Value::all(),
+            'post' => $post,
+        ];
+
+        return view('posts.create', $data);
     }
 
     /**
@@ -102,15 +122,28 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $post = Post::find($id);
-        $post->value_tag = $request->value_tag;
-        $post->actions_for_value = $request->actions_for_value;
-        $post->score = $request->score;
-        $post->good_things = $request->good_things;
-        $post->troubles = $request->troubles;
-        $post->memo = $request->memo;
+        // $post = Post::find($id);
+        // $post->value_tag = $request->value_tag;
+        // $post->actions_for_value = $request->actions_for_value;
+        // $post->score = $request->score;
+        // $post->good_things = $request->good_things;
+        // $post->troubles = $request->troubles;
+        // $post->memo = $request->memo;
 
-        $post->save();
+        // $post->save();
+
+
+        $post = Post::create([
+            'user_id' => Auth::id(),
+            'value_tags' => $request->value_tags,
+            'actions_for_value' => $request->actions_for_value,
+            'score' => $request->score,
+            'good_things' => $request->good_things,
+            'troubles' => $request->troubles,
+            'memo' => $request->memo,
+        ]);
+
+        $post->values()->attach($request->value_tags);
 
         session()->flash('flash_message', '日記を編集しました');
 

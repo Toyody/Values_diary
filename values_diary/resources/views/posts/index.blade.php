@@ -39,12 +39,16 @@
                   </div>
 
                 @else
-                  <form action="{{ route('trashed-posts.clear') }}" method="POST" style="display: inline">
-                    @csrf
                     <button type="submit" class="uk-button uk-button-danger uk-align-right" disabled>空にする
                     </button>
-                  </form>
                 @endif
+              @else
+                <a href="{{ route('posts.create') }}" >
+                  <button class="uk-button uk-button-primary uk-align-right">
+                    <span uk-icon="file-edit"></span>
+                    日記投稿
+                  </button>
+                </a>
               @endif
           {{ $posts->links('../pagination.default') }}
           <hr>
@@ -76,8 +80,9 @@
           <div class="uk-card uk-card-default uk-card-body" style="margin-top: 30px;">
             @if ($title == '投稿一覧')
               <a href="{{ route('trashed-posts.index') }}" style="text-decoration: none;">
-                <button class="uk-button uk-button-default uk-width-1-1">
-                  ゴミ箱を見る
+                <button class="uk-button uk-button-default uk-width-1-1" style="background-color: #e0e0e0;">
+                  <span uk-icon="trash"></span>
+                  ゴミ箱
                 </button>
               </a>
             @else
@@ -88,9 +93,10 @@
               </a>
             @endif
           </div>
-          <div class="uk-card uk-card-default uk-card-body" style="margin-top: 30px;">
-            <div class="uk-card-header bg-success" style="background-color: ;">
-              <h3>月間別</h3>
+          <div class="uk-card uk-card-default uk-card-body" style="margin-top: 30px; background-color: #d1ffd1;">
+            <div class="uk-card-header">
+              <span uk-icon="calendar"></span>
+              <strong>月間別</strong>
             </div>
             <div class="uk-card-body">
               <p>a</p>
@@ -98,11 +104,16 @@
               <p>a</p>
             </div>
           </div>
-          <div class="uk-card uk-card-default uk-card-body" style="margin-top: 30px;">
-            <h3 class="uk-card-title uk-margin-remove-bottom">価値観別</h3>
-            <p>a</p>
-            <p>a</p>
-            <p>a</p>
+          <div class="uk-card uk-card-default uk-card-body" style="margin-top: 30px; background-color: #e8ffd1;">
+            <div class="uk-card-header">
+              <span uk-icon="tag"></span>
+              <strong>価値観別</strong>
+            </div>
+            <div class="uk-card-body">
+              <p>a</p>
+              <p>a</p>
+              <p>a</p>
+            </div>
           </div>
         </aside>
       </div>

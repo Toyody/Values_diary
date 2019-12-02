@@ -22,9 +22,15 @@
 
                 
                 <div class="uk-margin-medium">
-                  <label class="uk-form-label" for="value_tag">価値観（設定済みの価値観から１つ以上を選択）</label>
+                  <label class="uk-form-label" for="value_tags">価値観（設定済みの価値観から１つ以上を選択）</label>
                   <div class="uk-form-controls">
-                    <input class="uk-input" type="text" placeholder="好奇心" id="value_tag" name="value_tag" value="{{ $post->value_tag }}">
+                    <select class="uk-select" id="value_tags" name="value_tags[]" multiple>
+                      @foreach ($values as $value)
+                        <option value="{{ $value->value }}">
+                          {{ $value->value }}
+                        </option>
+                      @endforeach
+                    </select>
                   </div>
                 </div>
                 

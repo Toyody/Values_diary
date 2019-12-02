@@ -24,9 +24,9 @@
                 <div class="uk-margin-medium">
                   <label class="uk-form-label" for="value_tags">価値観（設定済みの価値観から１つ以上を選択）</label>
                   <div class="uk-form-controls">
-                    <select class="uk-select" id="value_tags" name="value_tags[]" multiple>
+                    <select class="uk-select tags-selector" id="value_tags" name="value_tags[]" multiple>
                       @foreach ($values as $value)
-                        <option value="{{ $value->value }}">
+                        <option value="{{ $value->value }}" {{ strpos($post->value_tags, $value->value) !== false ? 'selected' : '' }}>
                           {{ $value->value }}
                         </option>
                       @endforeach
@@ -37,7 +37,8 @@
                 <div class="uk-margin-medium">
                   <label class="uk-form-label" for="actions_for_value">価値観に基づいた行動</label>
                   <div class="uk-form-controls">
-                    <textarea class="uk-textarea" rows="5" placeholder="気になっていた本を思い切ってまとめ買いした。" id="actions_for_value" name="actions_for_value">{{ $post->actions_for_value }}</textarea>
+                    <textarea class="uk-textarea" rows="5" placeholder="気になっていた本を思い切ってまとめ買いした。" id="actions_for_value" name="actions_for_value">{{ $post->actions_for_value }}
+                  </textarea>
                   </div>
                 </div>
 
@@ -87,4 +88,23 @@
       </div>
     </div>
   </div>
+@endsection
+
+@section('css')
+
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
+
+@endsection
+
+
+@section('scripts')
+
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
+
+  <script>
+    $(document).ready(function() {
+        $('.tags-selector').select2();
+    });
+  </script>
+
 @endsection

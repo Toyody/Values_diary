@@ -54,8 +54,9 @@ class PostsController extends Controller
     public function store(Request $request)
     {
         // バリデーションチェック
+
         $array = $request->value_tags;
-        $str = implode("、", $array);
+        $str = implode('、', $array);
 
         $post = Post::create([
             'user_id' => Auth::id(),
@@ -68,7 +69,6 @@ class PostsController extends Controller
         ]);
         $post->values()->attach($str);
         // $post->save(); 上記の書き方では不要？fillable含め調べよう
-
 
         session()->flash('flash_message', '投稿が完了しました');
 
@@ -91,7 +91,6 @@ class PostsController extends Controller
             'values' => Value::all(),
             'post' => $post,
         ];
-    
 
         return view('posts.show', $data);
     }
@@ -109,8 +108,8 @@ class PostsController extends Controller
             'values' => Value::all(),
             'post' => $post,
         ];
-
-        return view('posts.create', $data);
+        
+        return view('posts.edit', $data);
     }
 
     /**
@@ -131,7 +130,6 @@ class PostsController extends Controller
         // $post->memo = $request->memo;
 
         // $post->save();
-
 
         $post = Post::create([
             'user_id' => Auth::id(),

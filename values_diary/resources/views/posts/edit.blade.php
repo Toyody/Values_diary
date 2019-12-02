@@ -37,8 +37,7 @@
                 <div class="uk-margin-medium">
                   <label class="uk-form-label" for="actions_for_value">価値観に基づいた行動</label>
                   <div class="uk-form-controls">
-                    <textarea class="uk-textarea" rows="5" placeholder="気になっていた本を思い切ってまとめ買いした。" id="actions_for_value" name="actions_for_value">{{ $post->actions_for_value }}
-                  </textarea>
+                    <textarea class="uk-textarea" rows="5" placeholder="気になっていた本を思い切ってまとめ買いした。" id="actions_for_value" name="actions_for_value">{{ $post->actions_for_value }}</textarea>
                   </div>
                 </div>
 

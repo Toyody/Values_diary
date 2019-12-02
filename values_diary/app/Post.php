@@ -17,6 +17,6 @@ class Post extends Model
 
     public function values()
     {
-        return $this->belongsToMany(Value::class, 'post_value', 'post_id', 'value_name');
+        return $this->belongsToMany(Value::class, 'post_value', 'post_id', 'value_name')->withTimestamps();
     }
 }

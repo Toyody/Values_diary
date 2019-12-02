@@ -68,7 +68,6 @@ class PostsController extends Controller
             'memo' => $request->memo,
         ]);
         $post->values()->attach($str);
-        // $post->save(); 上記の書き方では不要？fillable含め調べよう
 
         session()->flash('flash_message', '投稿が完了しました');
 
@@ -121,19 +120,12 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $post = Post::find($id);
-        // $post->value_tag = $request->value_tag;
-        // $post->actions_for_value = $request->actions_for_value;
-        // $post->score = $request->score;
-        // $post->good_things = $request->good_things;
-        // $post->troubles = $request->troubles;
-        // $post->memo = $request->memo;
+        $array = $request->value_tags;
+        $str = implode('、', $array);
 
-        // $post->save();
-
-        $post = Post::create([
-            'user_id' => Auth::id(),
-            'value_tags' => $request->value_tags,
+        $post = Post::find($id);
+        $post->update([
+            'value_tags' => $str,
             'actions_for_value' => $request->actions_for_value,
             'score' => $request->score,
             'good_things' => $request->good_things,
@@ -141,7 +133,7 @@ class PostsController extends Controller
             'memo' => $request->memo,
         ]);
 
-        $post->values()->attach($request->value_tags);
+        $post->values()->attach($str);
 
         session()->flash('flash_message', '日記を編集しました');
 

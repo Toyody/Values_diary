@@ -49,12 +49,12 @@ class ValuesController extends Controller
     {
         //バリデーションチェック
 
-        $value = new Value;
-        $value->user_id = Auth::id();
-        $value->value = $request->value;
-        $value->reason = $request->reason;
-
-        $value->save();
+        $value = new Value();
+        $value->create([
+            'user_id' => Auth::id(),
+            'value' => $request->value,
+            'reason' => $request->reason,
+        ]);
 
         session()->flash('flash_message', '価値観を追加しました');
 
@@ -96,10 +96,11 @@ class ValuesController extends Controller
     public function update(Request $request, $id)
     {
         $value = Value::find($id);
-        $value->value = $request->value;
-        $value->reason = $request->reason;
 
-        $value->save();
+        $value->update([
+            'value' => $request->value,
+            'reason' => $request->reason,
+        ]);
 
         session()->flash('flash_message', '価値観を編集しました');
 

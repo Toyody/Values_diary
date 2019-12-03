@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Value;
 use App\Post;
 use Illuminate\Http\Request;
 
@@ -33,7 +34,28 @@ class SearchController extends Controller
             'posts' => $query->latest()->paginate(15),
             'keyword' => $keyword,
             'title' => '検索結果：' . $keyword,
-            'sentence' => '検索キーワード「' . $keyword . '」に一致する日記はありません'
+            'sentence' => '検索キーワード「' . $keyword . '」に一致する日記はありません',
+            'values' => Value::all(),
+
+
+        ];
+        return view('posts.index', $data);
+    }
+
+    public function valueSearchIndex(Request $request)
+    {
+        $keyword = $request->input('keyword');
+        $query = Post::query();
+
+        $query->where('value_tags', 'like', '%'.$keyword.'%');
+
+        $data = [
+            
+            'posts' => $query->latest()->paginate(15),
+            'keyword' => $keyword,
+            'title' => '価値観：' . $keyword,
+            'sentence' => '「' . $keyword . '」についての日記はまだありません',
+            'values' => Value::all(),
 
         ];
         return view('posts.index', $data);

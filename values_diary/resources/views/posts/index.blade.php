@@ -101,26 +101,40 @@
               </a>
             @endif
           </div>
-          <div class="uk-card uk-card-default uk-card-body" style="margin-top: 30px; background-color: #d1ffd1;">
+          <div class="uk-card uk-card-default uk-card-body" style="margin-top: 30px;">
             <div class="uk-card-header">
               <span uk-icon="calendar"></span>
               <strong>月間別</strong>
             </div>
             <div class="uk-card-body">
-              <p>a</p>
-              <p>a</p>
-              <p>a</p>
+            <!-- @foreach ($posts as $post)
+                <ul style="list-style: none;">
+                  <li>
+                    <a href="">
+                      <button class="uk-button uk-button-default">{{ $post->created_at->format('Y/m') }}</button>
+                    </a>
+                  </li>
+                </ul>
+              @endforeach -->
             </div>
           </div>
-          <div class="uk-card uk-card-default uk-card-body" style="margin-top: 30px; background-color: #e8ffd1;">
+          <div class="uk-card uk-card-default uk-card-body" style="margin-top: 30px;">
             <div class="uk-card-header">
               <span uk-icon="tag"></span>
               <strong>価値観別</strong>
             </div>
             <div class="uk-card-body">
-              <p>a</p>
-              <p>a</p>
-              <p>a</p>
+            @if ($values->count() > 0)
+              @foreach ($values as $value)
+                <ul style="list-style: none;">
+                  <li>
+                    <form action="{{ route('value-search') }}">
+                      <button type="submit" class="uk-button uk-button-default" value="{{ $value->value }}" name="keyword">{{ $value->value }}</button>
+                    </form>
+                  </li>
+                </ul>
+              @endforeach
+            @endif
             </div>
           </div>
         </aside>

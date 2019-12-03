@@ -13,7 +13,7 @@ class SearchController extends Controller
 
         $query = Post::query();
 
-        if (isset($keyword))
+        if (isset($keyword) && $keyword !== '')
         {
             $query->where('value_tags', 'like', '%'.$keyword.'%')
                 ->orWhere('actions_for_value', 'like', '%'.$keyword.'%')

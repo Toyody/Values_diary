@@ -24,6 +24,8 @@ Route::middleware(['auth'])->group(function (): void {
 
     Route::get('/about', 'AboutController@index')->name('about');
 
+    Route::get('/search', 'SearchController@index')->name('search');
+
     Route::resources([
         'posts' => 'PostsController',
         'values' => 'ValuesController',

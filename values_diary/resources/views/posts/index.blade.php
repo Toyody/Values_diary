@@ -43,15 +43,19 @@
                     </button>
                 @endif
               @else
-                <a href="{{ route('posts.create') }}" >
-                  <button class="uk-button uk-button-primary uk-align-right">
+                <a href="{{ route('posts.create') }}">
+                  <button class="uk-button uk-button-primary uk-align-right" style="margin: 0;">
                     <span uk-icon="file-edit"></span>
                     日記投稿
                   </button>
                 </a>
               @endif
-          {{ $posts->links('../pagination.default') }}
-          <hr>
+              @if (isset($keyword))
+                {{ $posts->appends(['keyword' => $keyword])->links('../pagination.default') }}
+              @else
+                {{ $posts->links('../pagination.default') }}
+              @endif
+              <hr>
           @if ($posts->count() > 0)
             <div class="uk-child-width-1-3 uk-text-center" uk-grid>
               @foreach ($posts as $post)
@@ -68,13 +72,17 @@
             <h3 class="uk-text-center">{{ $sentence }}</h3>
           @endif
           <hr>
-          {{ $posts->links('../pagination.default') }}
+          @if (isset($keyword))
+            {{ $posts->appends(['keyword' => $keyword])->links('../pagination.default') }}
+          @else
+            {{ $posts->links('../pagination.default') }}
+          @endif
         </div>
         <aside class="uk-width-1-3">
           <div class="uk-card uk-card-default uk-card-body">
-            <form class="uk-search uk-search-default uk-width-1-1">
+            <form class="uk-search uk-search-default uk-width-1-1" action="{{ route('search') }}">
               <span uk-search-icon></span>
-              <input class="uk-search-input" type="search" placeholder="Search...">
+              <input class="uk-search-input" name="keyword" type="search" placeholder="Search..." value="{{ isset($keyword) ? $keyword : '' }}">
             </form>
           </div>
           <div class="uk-card uk-card-default uk-card-body" style="margin-top: 30px;">

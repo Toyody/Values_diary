@@ -216,4 +216,27 @@ class PostsController extends Controller
 
         return redirect()->route('trashed-posts.index');
     }
+
+    /**
+     * 月別で一覧を出す
+     *
+     * @return \Illuminate\Http\Response
+     */
+    // public function monthly($month)
+    // {
+    //     $posts = Post::where('user_id', Auth::id())
+    //         ->latest()
+    //         //月ごとに分ける
+    //         ->
+    //         ->paginate(15);
+
+    //     $data = [
+    //         'posts' => $posts,
+    //         'title' => '投稿一覧',
+    //         'sentence' => '日記はまだありません',
+    //     ];
+
+    //     return view('posts.monthly', $data);
+    // }
+
 }

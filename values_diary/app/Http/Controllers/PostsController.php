@@ -22,11 +22,16 @@ class PostsController extends Controller
             ->latest()
             ->paginate(15);
 
+        $values = Value::where('user_id', Auth::id())
+            ->latest()
+            ->limit(12)
+            ->get();
+
         $data = [
             'posts' => $posts,
             'title' => '投稿一覧',
             'sentence' => '日記はまだありません',
-            'values' => Value::all(),
+            'values' => $values,
         ];
 
         return view('posts.index', $data);
@@ -39,8 +44,10 @@ class PostsController extends Controller
      */
     public function create()
     {
+        $values = Value::where('user_id', Auth::id())->get();
+
         $data = [
-            'values' => Value::all(),
+            'values' => $values,
         ];
 
         return view('posts.create', $data);
@@ -86,9 +93,11 @@ class PostsController extends Controller
         $post = Post::withTrashed()
             ->where('id', $id)
             ->firstOrFail();
+        
+        $values = Value::where('user_id', Auth::id())->get();
 
         $data = [
-            'values' => Value::all(),
+            'values' => $values,
             'post' => $post,
         ];
 
@@ -104,8 +113,11 @@ class PostsController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
+
+        $values = Value::where('user_id', Auth::id())->get();
+
         $data = [
-            'values' => Value::all(),
+            'values' => $values,
             'post' => $post,
         ];
         
@@ -180,11 +192,16 @@ class PostsController extends Controller
             ->latest()
             ->paginate(15);
 
+        $values = Value::where('user_id', Auth::id())
+            ->latest()
+            ->limit(12)
+            ->get();
+
         $data = [
             'posts' => $trashed,
             'title' => 'ゴミ箱',
             'sentence' => 'ゴミ箱は空です',
-            'values' => Value::all(),
+            'values' => $values,
         ];
 
         return view('posts.index', $data);

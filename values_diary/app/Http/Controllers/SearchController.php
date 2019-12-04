@@ -30,13 +30,18 @@ class SearchController extends Controller
             return redirect()->route('posts.index');
         }
 
+        $values = Value::where('user_id', Auth::id())
+            ->latest()
+            ->limit(12)
+            ->get();
+
         $data = [
             
             'posts' => $query->latest()->paginate(15),
             'keyword' => $keyword,
             'title' => 'キーワード：' . $keyword,
             'sentence' => '「' . $keyword . '」に一致する日記はありません',
-            'values' => Value::all(),
+            'values' => $values,
 
 
         ];
@@ -50,13 +55,18 @@ class SearchController extends Controller
 
         $query->where('value_tags', 'like', '%'.$keyword.'%');
 
+        $values = Value::where('user_id', Auth::id())
+            ->latest()
+            ->limit(12)
+            ->get();
+
         $data = [
             
             'posts' => $query->latest()->paginate(15),
             'keyword' => $keyword,
             'title' => '価値観：' . $keyword,
             'sentence' => '「' . $keyword . '」についての日記はまだありません',
-            'values' => Value::all(),
+            'values' => $values,
 
         ];
         return view('posts.index', $data);
@@ -73,13 +83,18 @@ class SearchController extends Controller
         // 表記用に日付のハイフンをスラッシュに置き換える
         $converted_keyword = str_replace('-', '/', $keyword);
 
+        $values = Value::where('user_id', Auth::id())
+            ->latest()
+            ->limit(12)
+            ->get();
+
         $data = [
             
             'posts' => $query->latest()->paginate(15),
             'keyword' => $keyword,
             'title' => '日付：' . $converted_keyword,
             'sentence' => '「' . $converted_keyword . '」の日記はありません',
-            'values' => Value::all(),
+            'values' => $values,
 
         ];
         return view('posts.index', $data);

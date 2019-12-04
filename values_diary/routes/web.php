@@ -28,6 +28,8 @@ Route::middleware(['auth'])->group(function (): void {
 
     Route::get('/value-search', 'SearchController@valueSearchIndex')->name('value-search');
 
+    Route::get('/date-search', 'SearchController@dateSearchIndex')->name('date-search');
+
     Route::resources([
         'posts' => 'PostsController',
         'values' => 'ValuesController',

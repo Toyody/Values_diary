@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Value;
 use App\Post;
+use Auth;
 use Illuminate\Http\Request;
 
 class SearchController extends Controller
@@ -33,8 +34,8 @@ class SearchController extends Controller
             
             'posts' => $query->latest()->paginate(15),
             'keyword' => $keyword,
-            'title' => '検索結果：' . $keyword,
-            'sentence' => '検索キーワード「' . $keyword . '」に一致する日記はありません',
+            'title' => 'キーワード：' . $keyword,
+            'sentence' => '「' . $keyword . '」に一致する日記はありません',
             'values' => Value::all(),
 
 
@@ -59,5 +60,29 @@ class SearchController extends Controller
 
         ];
         return view('posts.index', $data);
+    }
+
+    public function dateSearchIndex(Request $request)
+    {
+
+        $keyword = $request->input('keyword');
+        $query = Post::query();
+
+        $query->where('created_at', 'like', '%'.$keyword.'%');
+
+        // 表記用に日付のハイフンをスラッシュに置き換える
+        $converted_keyword = str_replace('-', '/', $keyword);
+
+        $data = [
+            
+            'posts' => $query->latest()->paginate(15),
+            'keyword' => $keyword,
+            'title' => '日付：' . $converted_keyword,
+            'sentence' => '「' . $converted_keyword . '」の日記はありません',
+            'values' => Value::all(),
+
+        ];
+        return view('posts.index', $data);
+
     }
 }

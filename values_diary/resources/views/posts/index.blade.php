@@ -80,12 +80,6 @@
         </div>
         <aside class="uk-width-1-3">
           <div class="uk-card uk-card-default uk-card-body">
-            <form class="uk-search uk-search-default uk-width-1-1" action="{{ route('search') }}">
-              <span uk-search-icon></span>
-              <input class="uk-search-input" name="keyword" type="search" placeholder="Search..." value="{{ isset($keyword) ? $keyword : '' }}">
-            </form>
-          </div>
-          <div class="uk-card uk-card-default uk-card-body" style="margin-top: 30px;">
             @if ($title == '投稿一覧')
               <a href="{{ route('trashed-posts.index') }}" style="text-decoration: none;">
                 <button class="uk-button uk-button-default uk-width-1-1" style="background-color: #e0e0e0;">
@@ -102,26 +96,36 @@
             @endif
           </div>
           <div class="uk-card uk-card-default uk-card-body" style="margin-top: 30px;">
+
             <div class="uk-card-header">
-              <span uk-icon="calendar"></span>
-              <strong>月間別</strong>
+              <span uk-icon="search"></span>
+              <strong>キーワード</strong>
             </div>
             <div class="uk-card-body">
-            <!-- @foreach ($posts as $post)
-                <ul style="list-style: none;">
-                  <li>
-                    <a href="">
-                      <button class="uk-button uk-button-default">{{ $post->created_at->format('Y/m') }}</button>
-                    </a>
-                  </li>
-                </ul>
-              @endforeach -->
+              <form action="{{ route('search') }}">
+                <input name="keyword" type="text" placeholder="Search..." value="{{ isset($keyword) ? $keyword : '' }}">
+                <input type="submit" value="検索">
+              </form>
+            </div>
+
+          </div>
+
+          <div class="uk-card uk-card-default uk-card-body" style="margin-top: 30px;">
+            <div class="uk-card-header">
+              <span uk-icon="calendar"></span>
+              <strong>日付</strong>
+            </div>
+            <div class="uk-card-body">
+              <form action="{{ route('date-search') }}">
+                <input class="flatpickr" type="text" placeholder="Select Date.." readonly="readonly" name="keyword">
+                <input type="submit" value="検索">
+              </form>
             </div>
           </div>
           <div class="uk-card uk-card-default uk-card-body" style="margin-top: 30px;">
             <div class="uk-card-header">
               <span uk-icon="tag"></span>
-              <strong>価値観別</strong>
+              <strong>価値観</strong>
             </div>
             <div class="uk-card-body">
             @if ($values->count() > 0)
@@ -141,4 +145,19 @@
       </div>
     </div>
   </div>
+@endsection
+
+@section('css')
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+@endsection
+
+@section('scripts')
+
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script>
+    flatpickr('.flatpickr');
+  </script>
+
 @endsection

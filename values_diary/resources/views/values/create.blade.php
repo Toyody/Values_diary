@@ -7,11 +7,9 @@
       <div class="uk-card-body">
         <h1 style="display: inline;">価値観を追加</h1>
         <div class="uk-align-right" style="margin: 0;">
-          <a href="{{ route('values.index') }}" style="text-decoration: none;">
-            <button class="uk-button uk-button-default">
-              戻る
-            </button>
-          </a>
+          <button class="uk-button uk-button-default" id="back">
+            戻る
+          </button>
         </div>
         <hr>
 
@@ -37,13 +35,62 @@
               <input class="uk-input uk-button-primary uk-margin" type="submit" value="追加">
           </fieldset>
         </form>
-        <a href="{{ route('values.index') }}" style="text-decoration: none;">
-          <button class="uk-input uk-button-default">
-            キャンセル
-          </button>
-        </a>
+        <button class="uk-input uk-button-default" id="cancel">
+          キャンセル
+        </button>
+
+        <!-- 削除用モーダル -->
+        <div id="delete_button" uk-modal>
+          <div class="uk-modal-dialog uk-modal-body">
+            <strong>投稿せずに破棄してもよろしいですか？</strong>
+            <p>この操作は取り消せません</p>
+            <div class="uk-align-right">
+              <button class="uk-button uk-button-default uk-modal-close">キャンセル</button>
+              <a href="{{ route('values.index') }}" >
+                <button class="uk-button uk-button-danger">
+                  破棄する
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+
+@endsection
+
+@section('scripts')
+
+  <script>
+    $(function() {
+      // フォームの入力欄が更新されたかどうかを表すフラグ
+      var isChanged = false;
+
+      // 戻るボタンかキャンセルボタンがクリックされたとき
+      $('#back, #cancel').on("click", function() {
+        if (isChanged) {
+          // isChangedフラグがtrueの場合、つまり入力内容が変更されていた
+          // 場合のみ「変更を破棄しますか」モーダルを表示
+          UIkit.modal('#delete_button').show();
+
+        } else {
+          // 入力内容が変更されていなければモーダルを表示させずにページ遷移
+          window.location.href = "/values";
+        }
+      });
+
+      $("form input, form textarea").change(function() {
+        // 入力内容が更新されている場合は、isChangedフラグをtrueにする
+        isChanged = true;
+      });
+
+      $("input[type=submit]").click(function() {
+        // フォームをサブミットする前にフラグを落とす
+        // ※ これをやらないと、サブミット時にモーダルが表示される
+        isChanged = false;
+      });
+    });
+  </script>
 
 @endsection

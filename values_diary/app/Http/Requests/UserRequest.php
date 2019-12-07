@@ -39,6 +39,7 @@ class UserRequest extends FormRequest
             'email' => [
                 'required',
                 'string',
+                'email',
                 Rule::unique('users', 'email')->ignore($exceptId),
             ],
             'ideal' => 'string|max:3000',
@@ -61,6 +62,8 @@ class UserRequest extends FormRequest
             'profile_image.mimes' => '写真にはjpeg,png,jpg,gifのうちいずれかの形式のファイルを指定してください',
             'email.required' => 'メールアドレスを入力してください',
             'email.string' => 'メールアドレスは文字列で入力してください',
+            'email.email' => '正しい形式のメールアドレスを入力してください',
+            'email.unique' => 'すでに使用されているメールアドレスです',
             'ideal.string' => 'どんな自分でありたいかは文字列で入力してください',
             'ideal.max' => 'どんな自分でありたいかは3000文字以内で入力してください',
         ];

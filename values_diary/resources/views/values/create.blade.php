@@ -20,17 +20,27 @@
               <legend class="uk-legend">新たな価値観</legend>
 
               <div class="uk-margin-medium">
-                  <label class="uk-form-label" for="value">価値観</label>
-                  <div class="uk-form-controls">
-                    <input class="uk-input" type="text" placeholder="愛、勇気、思いやり、成長など" id="value" name="value">
+                <label class="uk-form-label" for="value">価値観</label>
+                @if($errors->has('value'))
+                  <div class="alert alert-danger">
+                    {{ $errors->first('value') }}
                   </div>
+                @endif
+                <div class="uk-form-controls">
+                  <input class="uk-input" type="text" placeholder="愛、勇気、思いやり、成長など" id="value" name="value" value="{{ old('value') }}">
+                </div>
               </div>
 
               <div class="uk-margin-medium">
-                  <label class="uk-form-label" for="reason">理由（空欄でもOK）</label>
-                  <div class="uk-form-controls">
-                      <textarea class="uk-textarea" rows="5" placeholder="学生時代にこういうことで苦しんでいたが、ある人のこんな言葉に救われた。それ以来…" id="reason" name="reason"></textarea>
+                <label class="uk-form-label" for="reason">理由（空欄でもOK）</label>
+                @if($errors->has('reason'))
+                  <div class="alert alert-danger">
+                    {{ $errors->first('reason') }}
                   </div>
+                @endif 
+                <div class="uk-form-controls">
+                  <textarea class="uk-textarea" rows="5" placeholder="学生時代にこういうことで苦しんでいたが、ある人のこんな言葉に救われた。それ以来…" id="reason" name="reason">{{ old('reason') }}</textarea>
+                </div>
               </div>
               <input class="uk-input uk-button-primary uk-margin" type="submit" value="追加">
           </fieldset>
@@ -42,7 +52,7 @@
         <!-- 削除用モーダル -->
         <div id="delete_button" uk-modal>
           <div class="uk-modal-dialog uk-modal-body">
-            <strong>投稿せずに破棄してもよろしいですか？</strong>
+            <strong>追加せずに破棄してもよろしいですか？</strong>
             <p>この操作は取り消せません</p>
             <div class="uk-align-right">
               <button class="uk-button uk-button-default uk-modal-close">キャンセル</button>

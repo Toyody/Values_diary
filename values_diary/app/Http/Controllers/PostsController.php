@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostRequest;
 use App\Post;
 use App\Value;
 use Auth;
@@ -59,13 +60,11 @@ class PostsController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        // バリデーションチェック
-
         $array = $request->value_tags;
         $str = implode('、', $array);
-
+        // dd($request->input('value_tags'));
         $post = Post::create([
             'user_id' => Auth::id(),
             'value_tags' => $str,
@@ -93,7 +92,7 @@ class PostsController extends Controller
         $post = Post::withTrashed()
             ->where('id', $id)
             ->firstOrFail();
-        
+
         $values = Value::where('user_id', Auth::id())->get();
 
         $data = [
@@ -120,7 +119,7 @@ class PostsController extends Controller
             'values' => $values,
             'post' => $post,
         ];
-        
+
         return view('posts.edit', $data);
     }
 
@@ -131,7 +130,7 @@ class PostsController extends Controller
      * @param int                      $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PostRequest $request, $id)
     {
         $array = $request->value_tags;
         $str = implode('、', $array);
@@ -235,5 +234,4 @@ class PostsController extends Controller
 
         return redirect()->route('trashed-posts.index');
     }
-    
 }

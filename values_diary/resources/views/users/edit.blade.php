@@ -21,37 +21,57 @@
             <legend class="uk-legend">編集</legend>
 
             <div class="uk-margin-medium">
-                <label class="uk-form-label" for="value">名前</label>
-                <div class="uk-form-controls">
-                  <input class="uk-input" type="text" id="name" name="name" value="{{ $user->name }}">
+              <label class="uk-form-label" for="value">名前</label>
+              @if($errors->has('name'))
+                <div class="alert alert-danger">
+                  {{ $errors->first('name') }}
                 </div>
+              @endif 
+              <div class="uk-form-controls">
+                <input class="uk-input" type="text" id="name" name="name" value="{{ $user->name }}">
+              </div>
             </div>
 
             <div class="uk-margin-medium">
-                <label class="uk-form-label" for="profile_image">写真</label>
-                @if ($user->profile_image)
-                  <img src="/storage/images/{{ $user->profile_image }}" width="100px" height="100px" alt="avatar" style="border-radius: 50%;">
-                  <p>
-                    <label class="uk-form-label" for="delete_image"><input class="uk-checkbox" type="checkbox" name="delete_image">現在の写真を削除する</label>
-                  </p>
-                @endif
-                <div class="uk-form-controls">
-                  <input type="file" id="profile_image" name="profile_image" value="{{ $user->profile_image }}">
+              <label class="uk-form-label" for="profile_image">写真</label>
+              @if ($user->profile_image)
+                <img src="/storage/images/{{ $user->profile_image }}" width="100px" height="100px" alt="avatar" style="border-radius: 50%;">
+                <p>
+                  <label class="uk-form-label" for="delete_image"><input class="uk-checkbox" type="checkbox" name="delete_image">現在の写真を削除する</label>
+                </p>
+              @endif
+              @if($errors->has('profile_image'))
+                <div class="alert alert-danger">
+                  {{ $errors->first('profile_image') }}
                 </div>
+              @endif 
+              <div class="uk-form-controls">
+                <input type="file" id="profile_image" name="profile_image" value="{{ $user->profile_image }}">
+              </div>
             </div>
 
             <div class="uk-margin-medium">
-                <label class="uk-form-label" for="email">メールアドレス</label>
-                <div class="uk-form-controls">
-                  <input class="uk-input" type="text" id="email" name="email" value="{{ $user->email }}">
+              <label class="uk-form-label" for="email">メールアドレス</label>
+              @if($errors->has('email'))
+                <div class="alert alert-danger">
+                  {{ $errors->first('email') }}
                 </div>
+              @endif 
+              <div class="uk-form-controls">
+                <input class="uk-input" type="text" id="email" name="email" value="{{ $user->email }}">
+              </div>
             </div>
 
             <div class="uk-margin-medium">
-                <label class="uk-form-label" for="ideal">どんな自分でありたいか</label>
-                <div class="uk-form-controls">
-                    <textarea class="uk-textarea" rows="5" id="ideal" name="ideal">{{ $user->ideal }}</textarea>
+              <label class="uk-form-label" for="ideal">どんな自分でありたいか（空欄でもOK）</label>
+              @if($errors->has('ideal'))
+                <div class="alert alert-danger">
+                  {{ $errors->first('ideal') }}
                 </div>
+              @endif 
+              <div class="uk-form-controls">
+                  <textarea class="uk-textarea" rows="5" id="ideal" name="ideal">{{ $user->ideal }}</textarea>
+              </div>
             </div>
             <input class="uk-input uk-button-primary uk-margin" type="submit" value="編集を確定">
             
@@ -63,10 +83,10 @@
         <!-- 削除用モーダル -->
         <div id="delete_button" uk-modal>
           <div class="uk-modal-dialog uk-modal-body">
-            <strong>投稿せずに破棄してもよろしいですか？</strong>
+            <strong>変更を破棄してもよろしいですか？</strong>
             <p>この操作は取り消せません</p>
             <div class="uk-align-right">
-              <button class="uk-button uk-button-default uk-modal-close">キャンセル</button>
+              <button class="uk-button uk-button-default uk-modal-close">編集を続ける</button>
               <a href="{{ route('users.show', ['user' => $user]) }}" >
                 <button class="uk-button uk-button-danger">
                   破棄する

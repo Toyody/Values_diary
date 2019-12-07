@@ -22,10 +22,15 @@
 
               <div class="uk-margin-medium">
                 <label class="uk-form-label" for="value_tags">価値観（設定済みの価値観から１つ以上を選択）</label>
+                @if($errors->has('value_tags'))
+                  <div class="alert alert-danger">
+                    {{ $errors->first('value_tags') }}
+                  </div>
+                @endif 
                 <div class="uk-form-controls">
                   <select class="uk-select tags-selector" id="value_tags" name="value_tags[]" multiple>
                     @foreach ($values as $value)
-                      <option value="{{ $value->value }}">
+                      <option value="{{ $value->value }}" @if (old('value_tags')) {{ in_array($value->value, old('value_tags')) ? 'selected' : '' }} @endif>
                         {{ $value->value }}
                       </option>
                     @endforeach
@@ -35,15 +40,25 @@
             
               <div class="uk-margin-medium">
                 <label class="uk-form-label" for="actions_for_value">価値観に基づいた行動</label>
+                @if($errors->has('actions_for_value'))
+                  <div class="alert alert-danger">
+                    {{ $errors->first('actions_for_value') }}
+                  </div>
+                @endif 
                 <div class="uk-form-controls">
-                  <textarea class="uk-textarea" rows="5" placeholder="気になっていた本を思い切ってまとめ買いした。" id="actions_for_value" name="actions_for_value"></textarea>
+                  <textarea class="uk-textarea" rows="5" placeholder="気になっていた本を思い切ってまとめ買いした。" id="actions_for_value" name="actions_for_value">{{ old('actions_for_value') }}</textarea>
                 </div>
               </div>
 
               <div class="uk-margin-medium">
                   <label class="uk-form-label" for="score">今日の自分は何点？</label>
+                  @if($errors->has('score'))
+                    <div class="alert alert-danger">
+                      {{ $errors->first('score') }}
+                    </div>
+                  @endif 
                   <div class="uk-form-controls">
-                      <input class="uk-range" id="score" name="score" type="range" value="2" min="0" max="10" step="0.1">
+                      <input class="uk-range" id="score" name="score" type="range" value="{{ old('score') }}" min="0" max="10" step="0.1">
                   </div>
               </div>
 
@@ -55,24 +70,39 @@
               <br>
               
               <div class="uk-margin-medium">
-                  <label class="uk-form-label" for="good_things">良かったこと（３つ以上が推奨）</label>
-                  <div class="uk-form-controls">
-                      <textarea class="uk-textarea" rows="5" placeholder="・初めて入った店のご飯が美味しかった&#13;&#10;・仕事に集中できた&#13;&#10;・友達との電話が楽しかった" id="good_things" name="good_things"></textarea>
+                <label class="uk-form-label" for="good_things">良かったこと（３つ以上が推奨）</label>
+                @if($errors->has('good_things'))
+                  <div class="alert alert-danger">
+                    {{ $errors->first('good_things') }}
                   </div>
-              </div>
-
-              <div class="uk-margin-medium">
-                <label class="uk-form-label" for="troubles">どんなことで悩んでいるのか</label>
+                @endif 
                 <div class="uk-form-controls">
-                  <textarea class="uk-textarea" rows="5" placeholder="英単語がなかなか覚えられず、このままではTOEICで良い点数が取れるか心配。" id="troubles" name="troubles"></textarea>
+                    <textarea class="uk-textarea" rows="5" placeholder="・初めて入った店のご飯が美味しかった&#13;&#10;・仕事に集中できた&#13;&#10;・友達との電話が楽しかった" id="good_things" name="good_things">{{ old('good_things') }}</textarea>
                 </div>
               </div>
 
               <div class="uk-margin-medium">
-                  <label class="uk-form-label" for="memo">備考欄</label>
-                  <div class="uk-form-controls">
-                      <textarea class="uk-textarea" rows="5" placeholder="今日はダラダラと寝て過ごしてしまったので罪悪感があった。次からは気分転換に外に出るようにする。" id="memo" name="memo"></textarea>
+                <label class="uk-form-label" for="troubles">どんなことで悩んでいるのか</label>
+                @if($errors->has('troubles'))
+                  <div class="alert alert-danger">
+                    {{ $errors->first('troubles') }}
                   </div>
+                @endif 
+                <div class="uk-form-controls">
+                  <textarea class="uk-textarea" rows="5" placeholder="英単語がなかなか覚えられず、このままではTOEICで良い点数が取れるか心配。" id="troubles" name="troubles">{{ old('troubles') }}</textarea>
+                </div>
+              </div>
+
+              <div class="uk-margin-medium">
+                <label class="uk-form-label" for="memo">備考欄</label>
+                  @if($errors->has('memo'))
+                    <div class="alert alert-danger">
+                      {{ $errors->first('memo') }}
+                    </div>
+                  @endif 
+                <div class="uk-form-controls">
+                    <textarea class="uk-textarea" rows="5" placeholder="今日はダラダラと寝て過ごしてしまったので罪悪感があった。次からは気分転換に外に出るようにする。" id="memo" name="memo">{{ old('memo') }}</textarea>
+                </div>
               </div>
 
               <input class="uk-input uk-button-primary uk-margin" type="submit" value="投稿">

@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ValueRequest;
 use App\Value;
 use Auth;
 use Illuminate\Http\Request;
+
+// use Illuminate\Validation\Rule;
 
 class ValuesController extends Controller
 {
@@ -45,10 +48,8 @@ class ValuesController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ValueRequest $request)
     {
-        //バリデーションチェック
-
         $value = new Value();
         $value->create([
             'user_id' => Auth::id(),
@@ -93,8 +94,23 @@ class ValuesController extends Controller
      * @param int                      $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ValueRequest $request, $id)
     {
+        // dd(Rule::unique('values', 'value')->ignore($id));
+
+        // $this->validate($request,[
+        //     'value' => [
+        //     'required',
+        //     'string',
+        //     'max:24',
+        //     Rule::unique('values', 'value')->ignore($id),
+        //     ],
+        //     'reason' => [
+        //         'string',
+        //         'max:3000',
+        //     ],
+        // ]);
+
         $value = Value::find($id);
 
         $value->update([

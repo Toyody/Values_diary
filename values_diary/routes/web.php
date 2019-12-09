@@ -24,6 +24,8 @@ Route::middleware(['auth'])->group(function (): void {
 
     Route::get('/about', 'AboutController@index')->name('about');
 
+    Route::get('/graph', 'GraphController@index')->name('graph');
+
     Route::get('/search', 'SearchController@index')->name('search');
 
     Route::get('/value-search', 'SearchController@valueSearchIndex')->name('value-search');

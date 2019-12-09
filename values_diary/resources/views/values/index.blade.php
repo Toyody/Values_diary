@@ -45,5 +45,11 @@
     @endif
     <hr>
     {{ $values->links('../pagination.default') }}
+
+    <h2>価値観が分からない場合の参考用</h2>
+    <object data="/storage/pdfs/value_card_sort_japanese2.pdf" width="100%" height="650px">
+      <p>ご覧の環境では、object要素がサポートされていないようです。<a href="/storage/pdfs/value_card_sort_japanese2.pdf">PDFファイルをダウンロードしてください</a>。</p>
+    </object>
+    <p>出典：<a href="/storage/pdfs/value_card_sort_japanese2.pdf">ダウンロード（PDF）</a></p>
   </div>
 @endsection

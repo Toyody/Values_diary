@@ -24,7 +24,9 @@ class UsersTableSeeder extends Seeder
 
         // かんたんログインのためのテストユーザー
         DB::table('users')->insert([
-            'name' => 'test',
+            'name' => 'Test User',
+            'profile_image' => 'ZRNLMJxczXE4uItYhvwQwDUlp4B85Q98nBgM6Xja.jpeg',
+            'ideal' => 'これこれこういう人間になりたい。',
             'email' => 'test@example.com',
             'password' => bcrypt('password'),
             'created_at' => now(),

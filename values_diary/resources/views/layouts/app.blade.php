@@ -31,91 +31,79 @@
 </head>
 <body>
     <div id="app">
-        <nav class="uk-navbar-container uk-margin" uk-navbar>
-            @auth
-                <div class="uk-navbar-left">
-                    <a class="uk-navbar-item uk-logo" href="{{ route('home') }}">
-                        @if (Auth::user()->profile_image)
-                            <img src="/storage/images/{{ Auth::user()->profile_image }}" width="50px" height="50px" alt="avatar" style="border-radius: 50%; margin: 15px">
+        <header>
+            <nav class="uk-navbar-container uk-margin" uk-navbar>
+                @auth
+                    <div class="uk-navbar-left">
+                        <a class="uk-navbar-item uk-logo" href="{{ route('home') }}">
+                            @if (Auth::user()->profile_image)
+                                <img src="/storage/images/{{ Auth::user()->profile_image }}" width="50px" height="50px" alt="avatar" style="border-radius: 50%; margin: 15px">
 
-                        @endif
-                        {{ Auth::user()->name }}の価値観日記
-                    </a>
-                </div>
-                <div class="uk-navbar-right">
-                    <ul class="uk-navbar-nav">
-                        <li>
-                            <a href="{{ route('about') }}" >
-                                <span class="uk-icon uk-margin-small-right" uk-icon="info"></span>
-                                価値観日記とは
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('posts.index') }}" >
-                                <span class="uk-icon uk-margin-small-right" uk-icon="album"></span>
-                                日記
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('values.index') }}" >
-                                <span class="uk-icon uk-margin-small-right" uk-icon="list"></span>
-                                <!-- fontawsomeのグラフアイコンを使う -->
-                                価値観
-                            </a>
-                        </li>
-                        <li>
-                            <a href="" >
-                                <span class="uk-icon uk-margin-small-right" uk-icon="star"></span>
-                                グラフ
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/users/{{ Auth::id() }}">
-                                <span class="uk-icon uk-margin-small-right" uk-icon="user"></span>
-                                プロフィール
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
-                                <span class="uk-icon uk-margin-small-right" uk-icon="sign-out"></span>
-                                ログアウト
-                            </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
-                        </li>
-                    </ul>
-                </div>
-            @else
-                <div class="uk-navbar-left">
-                    <a class="uk-navbar-item uk-logo" href="/">
-                        価値観日記
-                    </a>
-                </div>
-                <div class="uk-navbar-right">
-                    <ul class="uk-navbar-nav">
-                        <li>
-                            <a href="{{ route('login') }}">
-                                <span class="uk-icon uk-margin-small-right" uk-icon="sign-in"></span>
-                                ログイン
-                            </a>
-                        </li>
-                        @if (Route::has('register'))
+                            @endif
+                            {{ Auth::user()->name }}の価値観日記
+                        </a>
+                    </div>
+                    <div class="uk-navbar-right">
+                        <ul class="uk-navbar-nav">
                             <li>
-                                <a href="{{ route('register') }}">
-                                    <span class="uk-icon uk-margin-small-right" uk-icon="plus"></span>
-                                    新規登録
+                                <a href="{{ route('about') }}" >
+                                    <span class="uk-icon uk-margin-small-right" uk-icon="info"></span>
+                                    価値観日記とは
                                 </a>
                             </li>
-                        @endif
-                    </ul>
-                </div>
-            @endauth
-        </nav>
+                            <li>
+                                <a href="{{ route('posts.index') }}" >
+                                    <span class="uk-icon uk-margin-small-right" uk-icon="album"></span>
+                                    日記
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('values.index') }}" >
+                                    <span class="uk-icon uk-margin-small-right" uk-icon="list"></span>
+                                    <!-- fontawsomeのグラフアイコンを使う -->
+                                    価値観
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" >
+                                    <span class="uk-icon uk-margin-small-right" uk-icon="star"></span>
+                                    グラフ
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/users/{{ Auth::id() }}">
+                                    <span class="uk-icon uk-margin-small-right" uk-icon="user"></span>
+                                    プロフィール
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                                    <span class="uk-icon uk-margin-small-right" uk-icon="sign-out"></span>
+                                    ログアウト
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                @else
+                    <div class="uk-navbar-left">
+                        <a class="uk-navbar-item uk-logo" href="{{ route('home') }}">
+                            価値観日記
+                        </a>
+                    </div>
+                @endauth
+            </nav>
+        </header>
         <main class="py-4">
             @yield('content')
         </main>
+        <footer>
+            <!-- 背景色をつける -->
+            <p class="uk-text-center uk-margin-remove uk-padding-small">&#169; 2019 スタンフォード推奨！価値観日記</p>
+        </footer>
     </div>
 
     @yield('scripts')

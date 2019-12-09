@@ -21,5 +21,13 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('password'),
             'created_at' => now(),
         ]);
+
+        // かんたんログインのためのテストユーザー
+        DB::table('users')->insert([
+            'name' => 'test',
+            'email' => 'test@example.com',
+            'password' => bcrypt('password'),
+            'created_at' => now(),
+        ]);
     }
 }

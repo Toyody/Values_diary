@@ -22,10 +22,12 @@
             <div class="uk-margin-medium">
               <label class="uk-form-label" for="value">価値観</label>
               @if($errors->has('value'))
-                <div class="alert alert-danger">
-                  {{ $errors->first('value') }}
+                <div class="uk-alert-danger" uk-alert>
+                  @foreach($errors->get('value') as $message)
+                    {{ $message }}<br>
+                  @endforeach
                 </div>
-              @endif
+              @endif 
               <div class="uk-form-controls">
                 <input class="uk-input" type="text" placeholder="愛、勇気、思いやり、成長など" id="value" name="value" value="{{ $value->value }}">
               </div>
@@ -34,10 +36,12 @@
             <div class="uk-margin-medium">
               <label class="uk-form-label" for="reason">理由（空欄でもOK）</label>
               @if($errors->has('reason'))
-                <div class="alert alert-danger">
-                  {{ $errors->first('reason') }}
+                <div class="uk-alert-danger" uk-alert>
+                  @foreach($errors->get('reason') as $message)
+                    {{ $message }}<br>
+                  @endforeach
                 </div>
-              @endif
+              @endif 
               <div class="uk-form-controls">
                 <textarea class="uk-textarea" rows="5" placeholder="学生時代にこういうことで苦しんでいたが、ある人のこんな言葉に救われた。それ以来…" id="reason" name="reason">{{ $value->reason }}</textarea>
               </div>

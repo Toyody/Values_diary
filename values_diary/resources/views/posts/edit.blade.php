@@ -22,8 +22,10 @@
             <div class="uk-margin-medium">
               <label class="uk-form-label" for="value_tags">価値観（設定済みの価値観から１つ以上を選択）</label>
               @if($errors->has('value_tags'))
-                <div class="alert alert-danger">
-                  {{ $errors->first('value_tags') }}
+                <div class="uk-alert-danger" uk-alert>
+                  @foreach($errors->get('value_tags') as $message)
+                    {{ $message }}<br>
+                  @endforeach
                 </div>
               @endif 
               <div class="uk-form-controls">
@@ -40,8 +42,10 @@
             <div class="uk-margin-medium">
               <label class="uk-form-label" for="actions_for_value">価値観に基づいた行動</label>
               @if($errors->has('actions_for_value'))
-                <div class="alert alert-danger">
-                  {{ $errors->first('actions_for_value') }}
+                <div class="uk-alert-danger" uk-alert>
+                  @foreach($errors->get('actions_for_value') as $message)
+                    {{ $message }}<br>
+                  @endforeach
                 </div>
               @endif 
               <div class="uk-form-controls">
@@ -51,11 +55,13 @@
 
             <div class="uk-margin-medium">
               <label class="uk-form-label" for="score">今日の自分は何点？</label>
-              @if($errors->has('score'))
-                <div class="alert alert-danger">
-                  {{ $errors->first('score') }}
-                </div>
-              @endif 
+                @if($errors->has('score'))
+                  <div class="uk-alert-danger" uk-alert>
+                    @foreach($errors->get('score') as $message)
+                      {{ $message }}<br>
+                    @endforeach
+                  </div>
+                @endif 
               <div class="uk-form-controls">
                 <input class="uk-range" id="score" name="score" type="range" value="{{ $post->score }}" min="0" max="10" step="0.1">
               </div>
@@ -70,8 +76,10 @@
             <div class="uk-margin-medium">
               <label class="uk-form-label" for="good_things">良かったこと（３つ以上が推奨）</label>
               @if($errors->has('good_things'))
-                <div class="alert alert-danger">
-                  {{ $errors->first('good_things') }}
+                <div class="uk-alert-danger" uk-alert>
+                  @foreach($errors->get('good_things') as $message)
+                    {{ $message }}<br>
+                  @endforeach
                 </div>
               @endif 
               <div class="uk-form-controls">
@@ -82,8 +90,10 @@
             <div class="uk-margin-medium">
               <label class="uk-form-label" for="troubles">どんなことで悩んでいるのか</label>
               @if($errors->has('troubles'))
-                <div class="alert alert-danger">
-                  {{ $errors->first('troubles') }}
+                <div class="uk-alert-danger" uk-alert>
+                  @foreach($errors->get('troubles') as $message)
+                    {{ $message }}<br>
+                  @endforeach
                 </div>
               @endif 
               <div class="uk-form-controls">
@@ -94,8 +104,10 @@
             <div class="uk-margin-medium">
               <label class="uk-form-label" for="memo">備考欄</label>
               @if($errors->has('memo'))
-                <div class="alert alert-danger">
-                  {{ $errors->first('memo') }}
+                <div class="uk-alert-danger" uk-alert>
+                  @foreach($errors->get('memo') as $message)
+                    {{ $message }}<br>
+                  @endforeach
                 </div>
               @endif 
               <div class="uk-form-controls">

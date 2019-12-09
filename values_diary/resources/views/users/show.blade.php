@@ -18,11 +18,14 @@
         <h1 style="display: inline;">プロフィール</h1>
         <div class="uk-align-right">
           <a href="{{ route('users.edit', ['user' => $user]) }}" style="text-decoration: none;">
-            <button class="uk-button uk-button-default">
+            <button class="uk-button uk-button-default" {{ $user->name === 'Test User' ? 'disabled' : '' }}>
               編集
             </button>
           </a>
         </div>
+        @if ($user->name === 'Test User')
+          <p class="uk-text-right">※テストユーザーのプロフィールは編集できません</p>
+        @endif
         <hr>
         <dl class="uk-description-list uk-description-list-divider uk-text-lead">
             <dt>名前</dt><br>

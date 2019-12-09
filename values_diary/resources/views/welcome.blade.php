@@ -4,6 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!-- ここら辺いらない部分は消す -->
+    <!-- あるいはコンポーネント化する？ -->
+    
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -67,14 +70,12 @@
                   </a>
                 </div>
                 <div>
-                  <!-- @if (Route::has('register')) -->
-                    <a href="{{ route('register') }}">
-                      <button class="uk-button uk-button-default uk-width-1-1">
-                        <span class="uk-icon uk-margin-small-right" uk-icon="plus"></span>
-                        新規登録
-                      </button>
-                    </a>
-                  <!-- @endif -->
+                  <a href="{{ route('register') }}">
+                    <button class="uk-button uk-button-default uk-width-1-1">
+                      <span class="uk-icon uk-margin-small-right" uk-icon="plus"></span>
+                      新規登録
+                    </button>
+                  </a>
                 </div>
               </div>
             </div>

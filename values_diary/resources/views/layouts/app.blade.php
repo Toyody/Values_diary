@@ -26,6 +26,9 @@
     <!-- UIkit CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.2.3/dist/css/uikit.min.css" />
 
+    <!-- Font Awesome -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
     @yield('css')
 
 </head>
@@ -60,18 +63,16 @@
                             <li>
                                 <a href="{{ route('values.index') }}" >
                                     <span class="uk-icon uk-margin-small-right" uk-icon="list"></span>
-                                    <!-- fontawsomeのグラフアイコンを使う -->
                                     価値観
                                 </a>
                             </li>
                             <li>
-                                <a href="" >
-                                    <span class="uk-icon uk-margin-small-right" uk-icon="star"></span>
-                                    グラフ
+                                <a href="{{ route('graph') }}" >
+                                    <i class="fa fa-bar-chart fa-lg" aria-hidden="true" ></i>&nbsp;&nbsp;グラフ
                                 </a>
                             </li>
                             <li>
-                                <a href="/users/{{ Auth::id() }}">
+                                <a href="{{ route('users.show' , [ 'user' => Auth::id() ]) }}">
                                     <span class="uk-icon uk-margin-small-right" uk-icon="user"></span>
                                     プロフィール
                                 </a>
@@ -90,8 +91,8 @@
                     </div>
                 @else
                     <div class="uk-navbar-left">
-                        <a class="uk-navbar-item uk-logo" href="{{ route('home') }}">
-                            価値観日記
+                        <a class="uk-navbar-item uk-logo" href="/">
+                            スタンフォード推奨！価値観日記
                         </a>
                     </div>
                 @endauth

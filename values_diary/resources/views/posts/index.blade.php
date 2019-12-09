@@ -149,12 +149,16 @@
 
 @section('css')
 
+  <!-- flatpickrのスタイルシート -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <!-- flatpickrのブルーテーマの追加スタイルシート -->
+  <link rel="stylesheet" href="https://npmcdn.com/flatpickr/dist/themes/material_blue.css">
 
 @endsection
 
 @section('scripts')
 
+  <!-- flatpickrのスクリプト -->
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script>
     flatpickr('.flatpickr');

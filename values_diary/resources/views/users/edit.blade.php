@@ -21,10 +21,12 @@
             <legend class="uk-legend">編集</legend>
 
             <div class="uk-margin-medium">
-              <label class="uk-form-label" for="value">名前</label>
+              <label class="uk-form-label" for="name">名前</label>
               @if($errors->has('name'))
-                <div class="alert alert-danger">
-                  {{ $errors->first('name') }}
+                <div class="uk-alert-danger" uk-alert>
+                  @foreach($errors->get('name') as $message)
+                    {{ $message }}<br>
+                  @endforeach
                 </div>
               @endif 
               <div class="uk-form-controls">
@@ -41,8 +43,10 @@
                 </p>
               @endif
               @if($errors->has('profile_image'))
-                <div class="alert alert-danger">
-                  {{ $errors->first('profile_image') }}
+                <div class="uk-alert-danger" uk-alert>
+                  @foreach($errors->get('profile_image') as $message)
+                    {{ $message }}<br>
+                  @endforeach
                 </div>
               @endif 
               <div class="uk-form-controls">
@@ -53,8 +57,10 @@
             <div class="uk-margin-medium">
               <label class="uk-form-label" for="email">メールアドレス</label>
               @if($errors->has('email'))
-                <div class="alert alert-danger">
-                  {{ $errors->first('email') }}
+                <div class="uk-alert-danger" uk-alert>
+                  @foreach($errors->get('email') as $message)
+                    {{ $message }}<br>
+                  @endforeach
                 </div>
               @endif 
               <div class="uk-form-controls">
@@ -65,8 +71,10 @@
             <div class="uk-margin-medium">
               <label class="uk-form-label" for="ideal">どんな自分でありたいか（空欄でもOK）</label>
               @if($errors->has('ideal'))
-                <div class="alert alert-danger">
-                  {{ $errors->first('ideal') }}
+                <div class="uk-alert-danger" uk-alert>
+                  @foreach($errors->get('ideal') as $message)
+                    {{ $message }}<br>
+                  @endforeach
                 </div>
               @endif 
               <div class="uk-form-controls">

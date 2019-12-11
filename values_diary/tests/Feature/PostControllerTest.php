@@ -1,20 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Feature;
 
 use App\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class PostControllerTest extends TestCase
 {
     /**
      * A basic feature test example.
-     *
-     * @return void
      */
-    public function testExample()
+    public function testExample(): void
     {
         $response = $this
             ->actingAs(User::find(1))

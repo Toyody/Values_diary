@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+// @var \Illuminate\Database\Eloquent\Factory $factory
 use App\Post;
 use Faker\Generator as Faker;
 

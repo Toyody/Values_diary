@@ -35,7 +35,7 @@
     <!-- Font Awesome -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
-
+    <!-- 後ほどscssにまとめておく -->
     <style>
       .bg_photo {
         background-image: url(/storage/images/diary-968603_1280.jpg);

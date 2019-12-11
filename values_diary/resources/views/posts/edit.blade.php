@@ -54,7 +54,7 @@
             </div>
 
             <div class="uk-margin-medium">
-              <label class="uk-form-label" for="score">今日の自分は何点？</label>
+              <label class="uk-form-label" for="score">今日の自分は何点？（１０点満点）</label>
                 @if($errors->has('score'))
                   <div class="uk-alert-danger" uk-alert>
                     @foreach($errors->get('score') as $message)
@@ -63,7 +63,8 @@
                   </div>
                 @endif 
               <div class="uk-form-controls">
-                <input class="uk-range" id="score" name="score" type="range" value="{{ $post->score }}" min="0" max="10" step="0.1">
+                <input class="uk-range" id="score" name="score" type="range" value="{{ $post->score }}" min="0" max="10" step="1">
+                <span id="value">{{ $post->score }}</span>
               </div>
             </div>
 
@@ -191,6 +192,17 @@
         isChanged = false;
       });
     });
+  </script>
+
+  <script>
+    let elem = document.getElementById('score');
+    let target = document.getElementById('value');
+    let rangeValue = function (elem, target) {
+      return function(evt){
+        target.innerHTML = elem.value;
+      }
+    }
+    elem.addEventListener('input', rangeValue(elem, target));
   </script>
 
 

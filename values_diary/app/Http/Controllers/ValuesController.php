@@ -22,7 +22,8 @@ class ValuesController extends Controller
     {
         $values = Value::where('user_id', Auth::id())
             ->latest()
-            ->paginate(12);
+            ->limit(12)
+            ->get();
 
         $data = [
             'values' => $values,
@@ -96,21 +97,6 @@ class ValuesController extends Controller
      */
     public function update(ValueRequest $request, $id)
     {
-        // dd(Rule::unique('values', 'value')->ignore($id));
-
-        // $this->validate($request,[
-        //     'value' => [
-        //     'required',
-        //     'string',
-        //     'max:24',
-        //     Rule::unique('values', 'value')->ignore($id),
-        //     ],
-        //     'reason' => [
-        //         'string',
-        //         'max:3000',
-        //     ],
-        // ]);
-
         $value = Value::find($id);
 
         $value->update([

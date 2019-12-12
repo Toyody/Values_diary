@@ -64,7 +64,6 @@ class PostsController extends Controller
     {
         $array = $request->value_tags;
         $str = implode('、', $array);
-        // dd($request->input('value_tags'));
         $post = Post::create([
             'user_id' => Auth::id(),
             'value_tags' => $str,

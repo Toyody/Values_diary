@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 
 class SearchController extends Controller
 {
-    public function index(Request $request)
+    public function wordSearch(Request $request)
     {
         $keyword = $request->input('keyword');
 
@@ -44,7 +44,7 @@ class SearchController extends Controller
         return view('posts.index', $data);
     }
 
-    public function valueSearchIndex(Request $request)
+    public function valueSearch(Request $request)
     {
         $keyword = $request->input('keyword');
         $query = Post::query();
@@ -66,7 +66,7 @@ class SearchController extends Controller
         return view('posts.index', $data);
     }
 
-    public function dateSearchIndex(Request $request)
+    public function dateSearch(Request $request)
     {
         $keyword = $request->input('keyword');
         $query = Post::query();

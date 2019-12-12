@@ -16,7 +16,7 @@
       <div class="uk-grid-match">
         <div class="uk-grid">
           <div class="uk-width-2-3">
-            <h2 style="display: inline;">{{ $title }}</h2>
+            <h1 style="display: inline;">{{ $title }}</h1>
               @if ($title == 'ゴミ箱')
                 @if ($posts->count() > 0)
                   <button type="submit" class="uk-button uk-button-danger uk-align-right" uk-toggle="target: #delete_button">空にする
@@ -69,7 +69,7 @@
               @endforeach
             </div>
           @else
-            <h3 class="uk-text-center">{{ $sentence }}</h3>
+            <h2 class="uk-text-center">{{ $sentence }}</h2>
           @endif
           <hr>
           @if (isset($keyword))
@@ -102,8 +102,17 @@
               <strong>キーワード</strong>
             </div>
             <div class="uk-card-body">
-              <form action="{{ route('search') }}">
-                <input name="keyword" type="text" placeholder="Search..." value="{{ isset($keyword) ? $keyword : '' }}">
+              <form action="{{ route('word-search') }}">
+                <input name="keyword" type="text" placeholder="Search..."
+                  @if (isset($keyword))
+                    {{-- flatpickで日付検索されたときはキーワード検索のvalueに日付が保持されないようにする --}}
+                    @if (strpos($keyword, '-') !== false)
+                      value=""
+                    @else
+                      value="{{ $keyword }}"
+                    @endif
+                  @endif
+                >
                 <input type="submit" value="検索">
               </form>
             </div>
@@ -117,7 +126,7 @@
             </div>
             <div class="uk-card-body">
               <form action="{{ route('date-search') }}">
-                <input class="flatpickr" type="text" placeholder="Select Date.." readonly="readonly" name="keyword">
+                <input class="flatpickr" type="text" placeholder="Select Date.." name="keyword" readonly>
                 <input type="submit" value="検索">
               </form>
             </div>

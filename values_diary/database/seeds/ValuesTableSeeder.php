@@ -12,6 +12,6 @@ class ValuesTableSeeder extends Seeder
      */
     public function run(): void
     {
-        factory(Value::class, 35)->create();
+        factory(Value::class, 12)->create();
     }
 }

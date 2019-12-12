@@ -32,11 +32,11 @@ Route::middleware(['auth'])->group(function (): void {
 
     Route::get('/graph', 'GraphController@index')->name('graph');
 
-    Route::get('/search', 'SearchController@index')->name('search');
+    Route::get('/word-search', 'SearchController@wordSearch')->name('word-search');
 
-    Route::get('/value-search', 'SearchController@valueSearchIndex')->name('value-search');
+    Route::get('/value-search', 'SearchController@valueSearch')->name('value-search');
 
-    Route::get('/date-search', 'SearchController@dateSearchIndex')->name('date-search');
+    Route::get('/date-search', 'SearchController@dateSearch')->name('date-search');
 
     Route::resources([
         'posts' => 'PostsController',

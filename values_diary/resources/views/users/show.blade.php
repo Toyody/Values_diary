@@ -24,7 +24,7 @@
           </a>
         </div>
         @if ($user->name === 'Test User')
-          <p class="uk-text-right">※テストユーザーのプロフィールは編集できません</p>
+          <p class="uk-text-right uk-text-meta">※テストユーザーのプロフィールは編集できません</p>
         @endif
         <hr>
         <dl class="uk-description-list uk-description-list-divider uk-text-lead">

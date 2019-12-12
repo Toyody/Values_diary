@@ -68,7 +68,7 @@
                             </li>
                             <li>
                                 <a href="{{ route('graph') }}" >
-                                    <i class="fa fa-bar-chart fa-lg" aria-hidden="true" ></i>&nbsp;&nbsp;グラフ
+                                    <i class="fa fa-pie-chart fa-lg" aria-hidden="true" ></i>&nbsp;&nbsp;グラフ
                                 </a>
                             </li>
                             <li>

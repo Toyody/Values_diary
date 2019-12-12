@@ -16,13 +16,17 @@
     <h2 style="display: inline;">価値観一覧</h2>
     <div class="uk-align-right" style="margin: 0;">
       <a href="{{ route('values.create') }}" >
-        <button class="uk-button uk-button-primary">
+        <button class="uk-button uk-button-primary" {{ $values->count() >= 12 ? 'disabled' : ''}}>
           <span uk-icon="pencil"></span>
           価値観を追加
         </button>
       </a>
     </div>
-    {{ $values->links('../pagination.default') }}
+    @if ($values->count() >= 12)
+      <p class="uk-text-right uk-text-meta">※価値観は12個までしか追加できません。既存の価値観を編集か削除してください</p>
+    @elseif ($values->count() < 3)
+      <p class="uk-text-right uk-text-meta">※価値観は最低でも3つあることが推奨されています。思い浮かばないようであれば下の参考用PDFをご覧ください</p>
+    @endif
     <hr>
     @if ($values->count() > 0)
       <div uk-grid="masonry: true">
@@ -44,7 +48,6 @@
       <h3 class="uk-text-center">{{ $sentence }}</h3>
     @endif
     <hr>
-    {{ $values->links('../pagination.default') }}
 
     <h2>価値観が分からない場合の参考用</h2>
     <object data="/storage/pdfs/value_card_sort_japanese2.pdf" width="100%" height="650px">

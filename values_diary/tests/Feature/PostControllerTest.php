@@ -20,6 +20,6 @@ class PostControllerTest extends TestCase
 
         $response->assertStatus(200)
             ->assertViewIs('posts.index')
-            ->assertSee('投稿一覧');
+            ->assertSee('日記一覧');
     }
 }

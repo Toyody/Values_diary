@@ -30,7 +30,7 @@ class PostsController extends Controller
 
         $data = [
             'posts' => $posts,
-            'title' => '投稿一覧',
+            'title' => '日記一覧',
             'sentence' => '日記はまだありません',
             'values' => $values,
         ];

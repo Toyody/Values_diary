@@ -13,10 +13,10 @@
   @endif
 
   <div class="uk-container">
-    <div class="uk-card uk-card-default uk-width-3-5 uk-align-center">
+    <div class="uk-card uk-card-default uk-width-1-1 uk-width-3-5@m uk-align-center">
       <div class="uk-card-body">
         <h1 style="display: inline;">プロフィール</h1>
-        <div class="uk-align-right">
+        <div class="uk-align-right@m">
           <a href="{{ route('users.edit', ['user' => $user]) }}" style="text-decoration: none;">
             <button class="uk-button uk-button-default" {{ $user->name === 'Test User' ? 'disabled' : '' }}>
               編集
@@ -24,7 +24,7 @@
           </a>
         </div>
         @if ($user->name === 'Test User')
-          <p class="uk-text-right uk-text-meta">※テストユーザーのプロフィールは編集できません</p>
+          <p class="uk-text-right@m uk-text-meta">※テストユーザーのプロフィールは編集できません</p>
         @endif
         <hr>
         <dl class="uk-description-list uk-description-list-divider uk-text-lead">

@@ -13,7 +13,7 @@
   @endif
   
   <div class="uk-container">
-    <h2 style="display: inline;">価値観一覧</h2>
+    <h1 style="display: inline;">価値観一覧</h1>
     <div class="uk-align-right" style="margin: 0;">
       <a href="{{ route('values.create') }}" >
         <button class="uk-button uk-button-primary" {{ $values->count() >= 12 ? 'disabled' : ''}}>
@@ -23,9 +23,9 @@
       </a>
     </div>
     @if ($values->count() >= 12)
-      <p class="uk-text-right uk-text-meta">※価値観は12個までしか追加できません。既存の価値観を編集か削除してください</p>
+      <p class="uk-text-right@s uk-text-meta">※価値観は12個までしか追加できません。既存の価値観を編集か削除してください</p>
     @elseif ($values->count() < 3)
-      <p class="uk-text-right uk-text-meta">※価値観は最低でも3つあることが推奨されています。思い浮かばないようであれば下の参考用PDFをご覧ください</p>
+      <p class="uk-text-right@s uk-text-meta">※価値観は最低でも3つあることが推奨されています。思い浮かばないようであれば下の参考用PDFをご覧ください</p>
     @endif
     <hr>
     @if ($values->count() > 0)

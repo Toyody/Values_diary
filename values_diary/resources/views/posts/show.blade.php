@@ -16,7 +16,7 @@
     <div class="uk-card uk-card-default uk-width-3-5@s uk-align-center">
       <div class="uk-card-body">
         <h1 style="display: inline">{{ $post->created_at->format('Y/m/d') }}</h1>
-        <div class="uk-align-right">
+        <div class="uk-align-right@m">
           <!-- 論理削除前の場合 -->
           @if (!$post->trashed())
             <a href="{{ route('posts.index') }}" style="text-decoration: none;">

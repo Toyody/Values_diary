@@ -34,7 +34,7 @@ class ValueRequest extends FormRequest
             'value' => [
                 'required',
                 'string',
-                'max:24',
+                'max:10',
                 Rule::unique('values', 'value')->ignore($exceptId),
             ],
             'reason' => 'string|max:3000',
@@ -51,7 +51,7 @@ class ValueRequest extends FormRequest
         return [
             'value.required' => '価値観を入力してください',
             'value.string' => '価値観は文字列で入力してください',
-            'value.max' => '価値観は24文字以内で入力してください',
+            'value.max' => '価値観は10文字以内で入力してください',
             'value.unique' => 'すでに同じ価値観が追加されています',
             'reason.string' => '理由は文字列で入力してください',
             'reason.max' => '理由は3000文字以内で入力してください',

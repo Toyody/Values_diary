@@ -13,10 +13,10 @@
   @endif
 
   <div class="uk-container">
-    <div class="uk-card uk-card-default uk-width-3-5 uk-align-center">
+    <div class="uk-card uk-card-default uk-width-3-5@s uk-align-center">
       <div class="uk-card-body">
         <h1 style="display: inline;">価値観の詳細</h1>
-        <div class="uk-align-right">
+        <div class="uk-align-right@m">
           <a href="{{ route('values.index') }}" style="text-decoration: none;">
             <button class="uk-button uk-button-default">
               戻る

@@ -1,8 +1,10 @@
 @if ($paginator->lastPage() > 1)
-<ul class="pagination justify-content-center">
-    <li class="page-item {{ ($paginator->currentPage() == 1) ? ' disabled' : '' }}">
+<ul class="pagination justify-content-center uk-margin-bottom">
+
+    <!-- First PageはPC環境時のみ表示 -->
+    <li class="uk-visible@m page-item {{ ($paginator->currentPage() == 1) ? ' disabled' : '' }}">
         <a class="page-link" href="{{ $paginator->url(1) }}">First Page</a>
-     </li>
+        </li>
     <li class="page-item {{ ($paginator->currentPage() == 1) ? ' disabled' : '' }}">
         <a class="page-link" href="{{ $paginator->url($paginator->currentPage()-1) }}">
             <span aria-hidden="true">«</span>
@@ -20,7 +22,9 @@
             {{-- Next --}}
         </a>
     </li>
-    <li class="page-item {{ ($paginator->currentPage() == $paginator->lastPage()) ? ' disabled' : '' }}">
+
+    <!-- Last PageはPC環境時のみ表示 -->
+    <li class="uk-visible@m page-item {{ ($paginator->currentPage() == $paginator->lastPage()) ? ' disabled' : '' }}">
         <a class="page-link" href="{{ $paginator->url($paginator->lastPage()) }}">Last Page</a>
     </li>
 </ul>

@@ -25,7 +25,7 @@ class SearchController extends Controller
                 ->orWhere('troubles', 'like', '%' . $keyword . '%')
                 ->orWhere('memo', 'like', '%' . $keyword . '%');
         } else {
-            // 検索ワードが空欄の場合は投稿一覧にリダイレクト
+            // 検索ワードが空欄の場合は日記一覧にリダイレクト
             return redirect()->route('posts.index');
         }
 

@@ -3,21 +3,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- ここら辺いらない部分は消す -->
-    <!-- あるいはコンポーネント化する？ -->
     
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
-
-    <!-- UIkit JS -->
-    <script src="https://cdn.jsdelivr.net/npm/uikit@3.2.3/dist/js/uikit.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/uikit@3.2.3/dist/js/uikit-icons.min.js"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -25,9 +15,6 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <!-- ソーシャルログイン用のスタイル -->
-    <link href="{{ asset('css/bootstrap-social.css') }}" rel="stylesheet">
-
 
     <!-- UIkit CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.2.3/dist/css/uikit.min.css" />
@@ -35,7 +22,9 @@
     <!-- Font Awesome -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
-    <!-- 後ほどscssにまとめておく -->
+    <!-- ソーシャルログイン用のスタイル -->
+    <link href="{{ asset('css/bootstrap-social.css') }}" rel="stylesheet">
+
     <style>
       .bg_photo {
         background-image: url(/storage/images/diary-968603_1280.jpg);
@@ -59,13 +48,12 @@
       }
     </style>
 
-
 </head>
 <body>
   @guest
-    <div class="bg_photo">
-      <div class="uk-container ">
-        <div class="uk-card uk-card-default uk-width-3-5 uk-align-center"  style="border-radius: 2%; background-color: rgba(255, 255, 255, 0.7);">
+    <div class="bg_photo" id="app">
+      <div class="uk-container">
+        <div class="uk-card uk-card-default uk-width-1-1 uk-width-3-5@m uk-align-center"  style="border-radius: 2%; background-color: rgba(255, 255, 255, 0.7);">
           <div class="uk-card-body uk-margin-large-top">
             <div class="uk-card-header">
               <h1 class="uk-card-title uk-text-center">スタンフォード推奨！価値観日記</h1>
@@ -80,10 +68,10 @@
                   かんたんログイン（テストユーザー）
                 </button>
               </form>
-              <div class="uk-child-width-1-2 uk-grid-small uk-text-center uk-margin-small" uk-grid>
+              <div class="uk-child-width-1-2@m uk-grid-small uk-text-center uk-margin-small" uk-grid>
                 <div>
                   <a href="{{ route('login') }}" style="text-decoration: none;">
-                    <button class="uk-button uk-width-1-1 button-white">
+                    <button class="uk-button uk-width-1-1@m button-white">
                       <span class="uk-icon uk-margin-small-right" uk-icon="sign-in"></span>
                       ログイン
                     </button>
@@ -91,7 +79,7 @@
                 </div>
                 <div>
                   <a href="{{ route('register') }}">
-                    <button class="uk-button uk-width-1-1 button-white">
+                    <button class="uk-button uk-width-1-1@m button-white">
                       <span class="uk-icon uk-margin-small-right" uk-icon="plus"></span>
                       新規登録
                     </button>
@@ -108,13 +96,19 @@
                   </a>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
       </div>
     </div>
   @endguest
+
+  <!-- Scripts -->
+  <script src="{{ asset('js/app.js') }}"></script>
+
+  <!-- UIkit JS -->
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.2.3/dist/js/uikit.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.2.3/dist/js/uikit-icons.min.js"></script>
 
 </body>
 </html>

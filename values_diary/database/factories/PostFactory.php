@@ -12,7 +12,7 @@ $factory->define(Post::class, function (Faker $faker) {
         // function() {
         //     return factory(App\User::class)->create()->id;
         // },
-        'value_tags' => $faker->text(10),
+        'value_tags' => $faker->text($max = 10),
         'actions_for_value' => $faker->text,
         'score' => $faker->numberBetween($min = 0, $max = 10),
         'good_things' => $faker->sentence,

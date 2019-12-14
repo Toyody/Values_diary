@@ -6,7 +6,7 @@
     <div class="uk-card uk-card-default uk-width-3-5@s uk-align-center">
       <div class="uk-card-body">
         <h1 style="display: inline;">価値観を追加</h1>
-        <div class="uk-align-right" style="margin: 0;">
+        <div class="uk-align-right@m">
           <button class="uk-button uk-button-default" id="back">
             戻る
           </button>

@@ -7,7 +7,8 @@
         <h1>価値観日記とは</h1>
         <hr>
         <article>
-          <div style="margin: 40px 30px ;">
+          <!-- articleタグ直下のdivタグにcssが適応されるため、こちらのdivは必要 -->
+          <div>
             <section>
               <p class="uk-text-bold">「価値観日記」とは、自分の価値観のために行動したことを毎日記録するための日記です。</p>
               <p>具体的には以下の項目があります。</p>
@@ -51,7 +52,7 @@
             <section>
               <h2 class="uk-heading-divider">価値観日記を最大限に活かすには</h2>
               <p>当アプリでは価値観日記の効果を高める工夫がされています。</p>
-              <p>日記投稿のフォーマットには任意で以下の3つの空欄があります。</p>
+              <p>日記のフォーマットには任意で以下の3つの空欄があります。</p>
               <ul>
                 <li>良かったこと（３つ以上が推奨）</li>
                 <li>どんなことで悩んでいるのか</li>
@@ -82,6 +83,13 @@
     }
     p, li {
       line-height: 2.5;
+    }
+
+    /* スマホ画面は本文周りの余白を詰め、タブレットとPCは本文周りに適度な余白を入れる */
+    @media screen and (min-width: 560px) {
+      article > div {
+        margin: 40px 30px ;
+      }
     }
   </style>
 @endsection

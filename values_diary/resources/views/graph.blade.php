@@ -6,15 +6,41 @@
       <div class="uk-card-body">
         <h1>グラフ</h1>
         <hr>
-        <div style="margin: 40px 30px ;">
+        <section>
           <p>それぞれの価値観についてどれくらい日記を書いたかを記録します。</p>
           <p>グラフ上にカーソルを乗せると日記数が表示されます。</p>
           <p>各価値観のラベルをクリックするとその価値観のグラフ内の表示をON/OFFできます。</p>
+        </section>
+        <div class="chart-container">
+          <canvas id="myChart">ご覧の環境では、canvas要素がサポートされていないようです。</canvas>
         </div>
-        <canvas id="myChart">ご覧の環境では、canvas要素がサポートされていないようです。</canvas>
       </div>
     </div>
   </div>
+@endsection
+
+@section('css')
+  <style>
+    /* タブレットとPC環境 */
+    @media screen and (min-width: 560px) {
+       
+      /* タブレットとPCは本文周りに適度な余白を入れる */
+      section {
+        margin: 40px 30px ;
+      }
+    }
+
+    /* スマホ環境 */
+    @media screen and (max-width: 559px) {
+
+      /* スマホ画面では円グラフが小さく潰れてしまうのでその対策 */
+      .chart-container {
+        position: relative;
+        width:80vw;
+        height:50vh;
+      }
+    }
+  </style>
 @endsection
 
 @section('scripts')
@@ -92,9 +118,20 @@
         }]
       };
 
+      let options;
+
+      /* スマホ画面では円グラフが小さく潰れてしまうのでその対策 */
+      if (window.matchMedia('screen and (max-width: 559px)').matches) {
+        options = {
+          responsive: true,
+          maintainAspectRatio: false,
+        }
+      }
+
       let myChart = new Chart(ctx, {
         type: type,
         data: data,
+        options: options,
       });
     })();
   </script>

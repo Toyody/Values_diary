@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -96,6 +96,27 @@
                   </a>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  @else
+    <!-- ログイン済みの場合 -->
+    <div class="bg_photo" id="app">
+      <div class="uk-container">
+        <div class="uk-card uk-card-default uk-width-1-1 uk-width-3-5@m uk-align-center"  style="border-radius: 2%; background-color: rgba(255, 255, 255, 0.7);">
+          <div class="uk-card-body uk-margin-large-top">
+            <div class="uk-card-header">
+              <h1 class="uk-card-title uk-text-center">スタンフォード推奨！価値観日記</h1>
+            </div>
+            <p class="uk-text-bolder uk-text-center">現在ログイン中です</p>
+            <div class="uk-card-body uk-padding-remove-top">
+              <a href="{{ route('home') }}">
+                <button class="uk-button uk-button-primary uk-width-1-1" type="submit">
+                  ホーム画面に戻る
+                </button>
+              </a>
             </div>
           </div>
         </div>

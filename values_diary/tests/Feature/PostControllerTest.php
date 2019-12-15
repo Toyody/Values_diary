@@ -9,11 +9,13 @@ use Tests\TestCase;
 
 class PostControllerTest extends TestCase
 {
+
     /**
      * A basic feature test example.
      */
     public function testExample(): void
     {
+        // 練習
         $response = $this
             ->actingAs(User::find(1))
             ->get('/posts');

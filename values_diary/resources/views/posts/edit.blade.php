@@ -18,7 +18,7 @@
 
             <legend class="uk-legend">編集</legend>
 
-            
+
             <div class="uk-margin-medium">
               <label class="uk-form-label" for="value_tags">価値観（設定済みの価値観から１つ以上を選択）</label>
               @if($errors->has('value_tags'))
@@ -27,7 +27,7 @@
                     {{ $message }}<br>
                   @endforeach
                 </div>
-              @endif 
+              @endif
               <div class="uk-form-controls">
                 <select class="uk-select tags-selector" id="value_tags" name="value_tags[]" multiple>
                   @foreach ($values as $value)
@@ -38,7 +38,7 @@
                 </select>
               </div>
             </div>
-            
+
             <div class="uk-margin-medium">
               <label class="uk-form-label" for="actions_for_value">価値観に基づいた行動</label>
               @if($errors->has('actions_for_value'))
@@ -47,7 +47,7 @@
                     {{ $message }}<br>
                   @endforeach
                 </div>
-              @endif 
+              @endif
               <div class="uk-form-controls">
                 <textarea class="uk-textarea" rows="5" placeholder="気になっていた本を思い切ってまとめ買いした。" id="actions_for_value" name="actions_for_value">{{ $post->actions_for_value }}</textarea>
               </div>
@@ -61,7 +61,7 @@
                       {{ $message }}<br>
                     @endforeach
                   </div>
-                @endif 
+                @endif
               <div class="uk-form-controls">
                 <input class="uk-range" id="score" name="score" type="range" value="{{ $post->score }}" min="0" max="10" step="1">
                 <span id="value">{{ $post->score }}</span>
@@ -73,7 +73,7 @@
             <p>以下は任意</p>
             <hr>
             <br>
-            
+
             <div class="uk-margin-medium">
               <label class="uk-form-label" for="good_things">良かったこと（３つ以上が推奨）</label>
               @if($errors->has('good_things'))
@@ -82,7 +82,7 @@
                     {{ $message }}<br>
                   @endforeach
                 </div>
-              @endif 
+              @endif
               <div class="uk-form-controls">
                   <textarea class="uk-textarea" rows="5" placeholder="・初めて入った店のご飯が美味しかった&#13;&#10;・仕事に集中できた&#13;&#10;・友達との電話が楽しかった" id="good_things" name="good_things">{{ $post->good_things }}</textarea>
               </div>
@@ -96,7 +96,7 @@
                     {{ $message }}<br>
                   @endforeach
                 </div>
-              @endif 
+              @endif
               <div class="uk-form-controls">
                 <textarea class="uk-textarea" rows="5" placeholder="英単語がなかなか覚えられず、このままではTOEICで良い点数が取れるか心配。" id="troubles" name="troubles">{{ $post->troubles }}</textarea>
               </div>
@@ -110,7 +110,7 @@
                     {{ $message }}<br>
                   @endforeach
                 </div>
-              @endif 
+              @endif
               <div class="uk-form-controls">
                   <textarea class="uk-textarea" rows="5" placeholder="今日はダラダラと寝て過ごしてしまったので罪悪感があった。次からは気分転換に外に出るようにする。" id="memo" name="memo">{{ $post->memo }}</textarea>
               </div>

@@ -11,13 +11,12 @@
       </div>
     </div>
   @endif
-  
+
   <div class="uk-container">
     <h1 style="display: inline;">価値観一覧</h1>
     <div class="uk-align-right" style="margin: 0;">
       <a href="{{ route('values.create') }}" >
         <button class="uk-button uk-button-primary" {{ $values->count() >= 12 ? 'disabled' : ''}}>
-          <span uk-icon="pencil"></span>
           価値観を追加
         </button>
       </a>

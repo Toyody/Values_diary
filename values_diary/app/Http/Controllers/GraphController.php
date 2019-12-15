@@ -20,8 +20,7 @@ class GraphController extends Controller
 
         $data = [
             'posts' => $posts,
-            'title' => '日記一覧',
-            'sentence' => '日記はまだありません',
+            'sentence' => '※まだ日記を書いていないので円グラフがありません',
             'values' => $values,
         ];
 

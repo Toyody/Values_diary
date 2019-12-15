@@ -30,7 +30,7 @@
                                     </div>
                                 @endif
                                 <div class="uk-form-controls">
-                                    <select class="uk-select tags-selector" id="value_tags" name="value_tags[]" multiple>
+                                    <select class="uk-select tags-selector" id="value_tags" name="value_tags[]" style="width: 100%;" multiple>
                                       @foreach ($values as $value)
                                           <option value="{{ $value->value }}" @if (old('value_tags')) {{ in_array($value->value, old('value_tags')) ? 'selected' : '' }} @endif>
                                             {{ $value->value }}
@@ -64,7 +64,7 @@
                                     </div>
                                 @endif
                                 <div class="uk-form-controls">
-                                    <input class="uk-range" id="score" name="score" type="range" value="{{ old('score') }}" min="0" max="10" step="1">
+                                    <input class="uk-range" id="score" name="score" type="range" value="{{ old('score') ? old('score') : '5' }}" min="0" max="10" step="1">
                                     <span id="value">{{ old('score') ? old('score') : '5' }}</span>
                                 </div>
                             </div>

@@ -183,14 +183,4 @@
     flatpickr('.flatpickr');
   </script>
 
-  <!-- ページネーションのレスポンシブ対応スクリプト -->
-  <script src="{{ asset('js/responsive-paginate.js') }}"></script>
-
-  <!-- レスポンシブ対応スクリプトのメソッドを呼び出す -->
-  <script>
-    $(document).ready(function () {
-      $(".pagination").rPage();
-    });
-  </script>
-
 @endsection

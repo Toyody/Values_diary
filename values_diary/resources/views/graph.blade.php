@@ -11,9 +11,14 @@
           <p>グラフ上にカーソルを乗せると日記数が表示されます。</p>
           <p>各価値観のラベルをクリックするとその価値観のグラフ内の表示をON/OFFできます。</p>
         </section>
-        <div class="chart-container">
-          <canvas id="myChart">ご覧の環境では、canvas要素がサポートされていないようです。</canvas>
-        </div>
+
+        @if ($posts->count() <= 0)
+            <p class="uk-text-bolder uk-text-center">{{ $sentence }}</p>
+        @endif
+            <div class="chart-container">
+                <canvas id="myChart">ご覧の環境では、canvas要素がサポートされていないようです。</canvas>
+            </div>
+
       </div>
     </div>
   </div>
@@ -23,7 +28,7 @@
   <style>
     /* タブレットとPC環境 */
     @media screen and (min-width: 560px) {
-       
+
       /* タブレットとPCは本文周りに適度な余白を入れる */
       section {
         margin: 40px 30px ;
@@ -79,12 +84,12 @@
         sum_list = [6, 9, 5];
         のような形にする
        */
-      // 
+      //
       let sum = 0;
       let sum_list = [];
       for (let i = 0; i < value_list.length; i++) {
         value_names.push(value_list[i].value);
-        
+
         for (let j = 0; j < post_list.length; j++) {
           if (post_list[j].value_tags.indexOf(value_names[i]) > -1) {
             sum += 1;

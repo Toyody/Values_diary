@@ -29,7 +29,7 @@
                 </div>
               @endif
               <div class="uk-form-controls">
-                <select class="uk-select tags-selector" id="value_tags" name="value_tags[]" multiple>
+                <select class="uk-select tags-selector" id="value_tags" name="value_tags[]" style="width: 100%;" multiple>
                   @foreach ($values as $value)
                     <option value="{{ $value->value }}" {{ strpos($post->value_tags, $value->value) !== false ? 'selected' : '' }}>
                       {{ $value->value }}

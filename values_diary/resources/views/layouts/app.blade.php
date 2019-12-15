@@ -198,7 +198,7 @@
     <!-- ページ遷移時にレイアウトが一瞬崩れる現象対策 -->
     <script>
         $(window).on('load', function() {
-            $('#app').fadeIn(500);
+            $('#app').fadeIn('fast');
         });
     </script>
 

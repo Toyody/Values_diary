@@ -28,13 +28,13 @@
 @endsection
 
 @section('css')
-  <style>
-    html{
-      height:100%; 
-    }
+    <style>
+        html{
+            height:100%;
+        }
 
-    body{
-      height:100%;
-    }
-  </style>
+        body{
+            height:100%;
+        }
+    </style>
 @endsection

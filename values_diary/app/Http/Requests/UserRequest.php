@@ -34,15 +34,14 @@ class UserRequest extends FormRequest
 
         return [
             // Ruleメソッドを使うためパイプではなく配列記法
-            'name' => 'required|string|max:24',
+            'name' => 'required|max:24',
             'profile_image' => 'file|image|mimes:jpeg,png,jpg,gif',
             'email' => [
                 'required',
-                'string',
                 'email',
                 Rule::unique('users', 'email')->ignore($exceptId),
             ],
-            'ideal' => 'string|max:3000',
+            'ideal' => 'max:1000',
         ];
     }
 
@@ -55,17 +54,14 @@ class UserRequest extends FormRequest
     {
         return [
             'name.required' => '名前を入力してください',
-            'name.string' => '名前は文字列で入力してください',
             'name.max' => '名前は24文字以内で入力してください',
             'profile_image.file' => '写真にはファイルを指定してください',
             'profile_image.image' => '写真には画像ファイルを指定してください',
             'profile_image.mimes' => '写真にはjpeg,png,jpg,gifのうちいずれかの形式のファイルを指定してください',
             'email.required' => 'メールアドレスを入力してください',
-            'email.string' => 'メールアドレスは文字列で入力してください',
             'email.email' => '正しい形式のメールアドレスを入力してください',
             'email.unique' => 'すでに使用されているメールアドレスです',
-            'ideal.string' => 'どんな自分でありたいかは文字列で入力してください',
-            'ideal.max' => 'どんな自分でありたいかは3000文字以内で入力してください',
+            'ideal.max' => 'どんな自分でありたいかは1000文字以内で入力してください',
         ];
     }
 }

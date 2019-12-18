@@ -6,6 +6,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Auth;
 
 class ValueRequest extends FormRequest
 {
@@ -33,11 +34,14 @@ class ValueRequest extends FormRequest
             // Ruleメソッドを使うためパイプではなく配列記法
             'value' => [
                 'required',
-                'string',
                 'max:10',
-                Rule::unique('values', 'value')->ignore($exceptId),
+                Rule::unique('values', 'value')->ignore($exceptId)
+                    // ユーザー内で一意になるように条件を追加
+                    ->where(function ($query) {
+                        return $query->where('user_id', Auth::id());
+                    }),
             ],
-            'reason' => 'string|max:3000',
+            'reason' => 'max:1000',
         ];
     }
 
@@ -50,11 +54,9 @@ class ValueRequest extends FormRequest
     {
         return [
             'value.required' => '価値観を入力してください',
-            'value.string' => '価値観は文字列で入力してください',
             'value.max' => '価値観は10文字以内で入力してください',
             'value.unique' => 'すでに同じ価値観が追加されています',
-            'reason.string' => '理由は文字列で入力してください',
-            'reason.max' => '理由は3000文字以内で入力してください',
+            'reason.max' => '理由は1000文字以内で入力してください',
         ];
     }
 }

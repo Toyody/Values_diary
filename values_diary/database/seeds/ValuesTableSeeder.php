@@ -13,5 +13,13 @@ class ValuesTableSeeder extends Seeder
     public function run(): void
     {
         factory(Value::class, 12)->create();
+
+        // テストユーザーの価値観
+        DB::table('values')->insert([
+            'user_id' => '2',
+            'value' => '思いやり',
+            'reason' => '昔にこういうことがあったのがきっかけ',
+            'created_at' => now(),
+        ]);
     }
 }

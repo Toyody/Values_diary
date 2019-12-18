@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tests\Feature;
 
-use App\User;
 use Tests\TestCase;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Validator;
@@ -26,40 +25,6 @@ class PostControllerTest extends TestCase
         Artisan::call('migrate:refresh');
         Artisan::call('db:seed');
 
-    }
-
-    /**
-     * A basic feature test example.
-     */
-    public function testExample(): void
-    {
-        $response = $this
-            ->actingAs(User::find(1))
-            ->get('/posts');
-
-        $response->assertStatus(200)
-            ->assertViewIs('posts.index')
-            ->assertSee('日記一覧');
-    }
-
-    public function testBoard(): void
-    {
-        $response = $this
-            ->actingAs(User::find(1))
-            ->get('/home')
-            ->assertViewIs('home')
-            ->assertSee('価値観日記へようこそ');
-
-        $response-> assertStatus(200);
-    }
-
-    public function testDatabase()
-    {
-        // アプリケーションを呼び出す…
-
-        $this->assertDatabaseHas('users', [
-            'email' => 'toyody0420@gmail.com',
-        ]);
     }
 
     /**

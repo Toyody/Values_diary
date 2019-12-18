@@ -28,9 +28,9 @@
     @endif
     <hr>
     @if ($values->count() > 0)
-      <div uk-grid="masonry: true">
+      <div uk-grid>
         <div class="uk-grid">
-          <div class="uk-child-width-1-3 uk-text-center" uk-grid>
+          <div class="uk-child-width-1-3@s uk-text-center" uk-grid>
             @foreach ($values as $value)
               <div>
                 <a href="{{ route('values.show', ['value' => $value]) }}" style="text-decoration: none;">

@@ -83,15 +83,15 @@ class PostsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param Post $post
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Post $post)
     {
-        $post = Post::withTrashed()
-            ->where('id', $id)
-            ->firstOrFail();
-
+        if (Auth::user()->id !== $post->user_id) {
+            abort(403);
+        }
+        
         $values = Value::where('user_id', Auth::id())->get();
 
         $data = [
@@ -105,13 +105,14 @@ class PostsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
+     * @param Post $post
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        $post = Post::find($id);
-
+        if (Auth::user()->id !== $post->user_id) {
+            abort(403);
+        }
         $values = Value::where('user_id', Auth::id())->get();
 
         $data = [
@@ -126,15 +127,14 @@ class PostsController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int                      $id
+     * @param Post $post
      * @return \Illuminate\Http\Response
      */
-    public function update(PostRequest $request, $id)
+    public function update(PostRequest $request, Post $post)
     {
         $array = $request->value_tags;
         $str = implode('、', $array);
 
-        $post = Post::find($id);
         $post->update([
             'value_tags' => $str,
             'actions_for_value' => $request->actions_for_value,
@@ -154,15 +154,11 @@ class PostsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param Post $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        $post = Post::withTrashed()
-            ->where('id', $id)
-            ->firstOrFail();
-
         if ($post->trashed()) {
             $post->forceDelete();
 
@@ -208,12 +204,12 @@ class PostsController extends Controller
     /**
      * ゴミ箱内の日記を復元.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Post $post
      * @return \Illuminate\Http\Response
      */
-    public function restoreTrashedPost(Request $request)
+    public function restoreTrashedPost(Post $post)
     {
-        Post::onlyTrashed()->restore();
+        $post->restore();
 
         session()->flash('flash_message', '日記を復元しました');
 

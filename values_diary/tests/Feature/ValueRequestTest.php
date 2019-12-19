@@ -58,14 +58,11 @@ class ValueControllerTest extends TestCase
             // 'value.required' => '価値観を入力してください'
             ['value', '', false],
 
-            // 'value.max' => '価値観は10文字以内で入力してください'
-            // str_repeat('a', 11)で、11文字の文字列を作成(aが11個できる)
-            ['value', str_repeat('a', 11), false],
-            ['value', str_repeat('a', 10), true],
-            ['value', str_repeat('a', 5), true],
-
-            //'value.unique' => 'すでに同じ価値観が追加されています'
-            // ['value', '思いやり'],
+            // 'value.max' => '価値観は15文字以内で入力してください'
+            // str_repeat('a', 15)で、15文字の文字列を作成(aが11個できる)
+            ['value', str_repeat('a', 16), false],
+            ['value', str_repeat('a', 15), true],
+            ['value', str_repeat('a', 1), true],
 
             // 'reason.max' => '理由は1000文字以内で入力してください'
             ['reason', str_repeat('a', 1001), false],

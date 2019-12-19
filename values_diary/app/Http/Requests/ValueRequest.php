@@ -34,7 +34,7 @@ class ValueRequest extends FormRequest
             // Ruleメソッドを使うためパイプではなく配列記法
             'value' => [
                 'required',
-                'max:10',
+                'max:15',
                 Rule::unique('values', 'value')->ignore($exceptId)
                     // ユーザー内で一意になるように条件を追加
                     ->where(function ($query) {
@@ -54,7 +54,7 @@ class ValueRequest extends FormRequest
     {
         return [
             'value.required' => '価値観を入力してください',
-            'value.max' => '価値観は10文字以内で入力してください',
+            'value.max' => '価値観は15文字以内で入力してください',
             'value.unique' => 'すでに同じ価値観が追加されています',
             'reason.max' => '理由は1000文字以内で入力してください',
         ];

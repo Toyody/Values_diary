@@ -17,18 +17,3 @@
     </div>
   </div>
 @endsection
-
-@section('css')
-  <style>
-    /* スマホとPC環境時にフッター下に出てくる余白対策。タブレット時は余白がない */
-    @media screen and (max-width: 559px), screen and (min-width: 960px) {
-      html{
-        height:100%; 
-      }
-
-      body{
-        height:100%;
-      }
-    }
-  </style>
-@endsection

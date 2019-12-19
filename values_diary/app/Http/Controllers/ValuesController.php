@@ -9,8 +9,6 @@ use App\Value;
 use Auth;
 use Illuminate\Http\Request;
 
-// use Illuminate\Validation\Rule;
-
 class ValuesController extends Controller
 {
     /**
@@ -66,25 +64,28 @@ class ValuesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param Value $value
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Value $value)
     {
-        $value = Value::where('id', $id)->firstOrFail();
-
+        if (Auth::user()->id !== $value->user_id) {
+            abort(403);
+        }
         return view('values.show', ['value' => $value]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
+     * @param Value $value
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Value $value)
     {
-        $value = Value::find($id);
+        if (Auth::user()->id !== $value->user_id) {
+            abort(403);
+        }
         return view('values.edit', ['value' => $value]);
     }
 
@@ -92,13 +93,11 @@ class ValuesController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int                      $id
+     * @param Value $value
      * @return \Illuminate\Http\Response
      */
-    public function update(ValueRequest $request, $id)
+    public function update(ValueRequest $request, Value $value)
     {
-        $value = Value::find($id);
-
         $value->update([
             'value' => $request->value,
             'reason' => $request->reason,
@@ -112,12 +111,11 @@ class ValuesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param Value $value
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Value $value)
     {
-        $value = Value::findOrFail($id);
         $value->delete();
         session()->flash('flash_message', '価値観を削除しました');
         return redirect('/values');

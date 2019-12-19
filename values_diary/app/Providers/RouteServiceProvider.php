@@ -6,6 +6,7 @@ namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use App\Post;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -24,6 +25,11 @@ class RouteServiceProvider extends ServiceProvider
     public function boot(): void
     {
         parent::boot();
+
+        // ゴミ箱内の日記も見られるように論理削除済みも含めてpostコントローラーの引数に渡す
+        Route::bind('post', function ($post) {
+            return Post::withTrashed()->where('id', $post)->firstOrFail();
+        });
     }
 
     /**

@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
 use App\User;
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -42,26 +43,28 @@ class UsersController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int   $id
-     * @param mixed $user_id
+     * @param User $user
      * @return \Illuminate\Http\Response
      */
-    public function show($user_id)
+    public function show(User $user)
     {
-        $user = User::where('id', $user_id)->firstOrFail();
-
+        if (Auth::user()->id !== $user->id) {
+            abort(403);
+        }
         return view('users.show', ['user' => $user]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
+     * @param User $user
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        $user = User::find($id);
+        if (Auth::user()->id !== $user->id) {
+            abort(403);
+        }
         return view('users.edit', ['user' => $user]);
     }
 
@@ -69,12 +72,11 @@ class UsersController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int                      $id
+     * @param User $user
      * @return \Illuminate\Http\Response
      */
-    public function update(UserRequest $request, $id)
+    public function update(UserRequest $request, User $user)
     {
-        $user = User::find($id);
         $user->name = $request->name;
 
         if ($request->delete_image) {
@@ -101,10 +103,10 @@ class UsersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param User $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
     }
 }

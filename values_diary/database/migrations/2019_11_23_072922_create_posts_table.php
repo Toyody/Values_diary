@@ -16,7 +16,7 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table): void {
             $table->bigIncrements('id');
             $table->integer('user_id');
-            $table->string('value_tags', 24);
+            $table->string('value_tags', 180);
             $table->text('actions_for_value');
             $table->integer('score');
             $table->text('good_things')->nullable();

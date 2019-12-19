@@ -22,11 +22,17 @@
     <!-- Font Awesome -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
-    <!-- ページ遷移時にレイアウトが一瞬崩れる現象対策。load後にfadeInさせる -->
     <style>
+        /* ページ遷移時にレイアウトが一瞬崩れる現象対策。load後にfadeInさせる */
         #app {
             display:none;
         }
+
+        /* 背景から空白を消す */
+        html,body, #app{
+            min-height: 100vh;
+        }
+
     </style>
 
     @yield('css')

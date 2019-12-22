@@ -27,7 +27,7 @@
 
     <style>
       .bg_photo {
-        background-image: url(/storage/images/diary-968603_1280.jpg);
+        background-image: url(https://values-diary-portfolio.s3-ap-northeast-1.amazonaws.com/diary-968603_1280.jpg);
         background-size: cover;
         background-position: center;
         width: 100vw;
@@ -52,7 +52,7 @@
 <body>
   @guest
     <div class="bg_photo" id="app">
-      <div class="uk-container">
+      <div class="uk-container" style ="z-index: 2;">
         <div class="uk-card uk-card-default uk-width-1-1 uk-width-3-5@m uk-align-center"  style="border-radius: 2%; background-color: rgba(255, 255, 255, 0.7);">
           <div class="uk-card-body uk-margin-large-top">
             <div class="uk-card-header">

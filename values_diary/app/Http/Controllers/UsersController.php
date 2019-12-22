@@ -65,6 +65,12 @@ class UsersController extends Controller
         if (Auth::user()->id !== $user->id) {
             abort(403);
         }
+
+        // テストユーザーは編集できないようにリダイレクト
+        if ($user->id == 2) {
+            return redirect()->route('users.show', ['user' => $user]);
+        }
+        
         return view('users.edit', ['user' => $user]);
     }
 
@@ -80,14 +86,14 @@ class UsersController extends Controller
         $user->name = $request->name;
 
         if ($request->delete_image) {
-            Storage::delete('public/images/' . $user->profile_image);
+            // Storage::delete('public/images/' . $user->profile_image);
             $user->profile_image = null;
         }
 
         if ($request->hasfile('profile_image')) {
-            Storage::delete('public/images/' . $user->profile_image);
-            $filename = $request->profile_image->store('public/images');
-            $user->profile_image = basename($filename);
+            $image = $request->file('profile_image');
+            $path = Storage::disk('s3')->putFile('/', $image, 'public');
+            $user->profile_image = Storage::disk('s3')->url($path);
         }
 
         $user->email = $request->email;

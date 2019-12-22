@@ -33,7 +33,7 @@
             <dt>写真</dt><br>
             @if ($user->profile_image)
               <dd>
-                <img src="/storage/images/{{ $user->profile_image }}" width="100px" height="100px" alt="avatar" style="border-radius: 50%;">
+                <img src="{{ $user->profile_image }}" width="100px" height="100px" alt="avatar" style="border-radius: 50%;">
               </dd>
             @endif
             <dt>登録したメールアドレス</dt><br>

@@ -48,8 +48,7 @@
                     <div class="uk-navbar-left">
                         <a class="uk-navbar-item uk-logo" href="{{ route('home') }}">
                             @if (Auth::user()->profile_image)
-                                <img src="/storage/images/{{ Auth::user()->profile_image }}" width="50px" height="50px" alt="avatar" style="border-radius: 50%; margin: 15px">
-
+                                <img src="{{ Auth::user()->profile_image }}" width="50px" height="50px" alt="avatar" style="border-radius: 50%; margin: 15px">
                             @endif
                             {{ Auth::user()->name }}の価値観日記
                         </a>
@@ -126,7 +125,7 @@
                     <div class="uk-navbar-left">
                         <a class="uk-navbar-item uk-logo" href="{{ route('home') }}">
                             @if (Auth::user()->profile_image)
-                                <img src="/storage/images/{{ Auth::user()->profile_image }}" width="50px" height="50px" alt="avatar" style="border-radius: 50%; margin: 15px">
+                                <img src="{{ Auth::user()->profile_image }}" width="50px" height="50px" alt="avatar" style="border-radius: 50%; margin: 15px">
 
                             @endif
                             {{ Auth::user()->name }}の価値観日記

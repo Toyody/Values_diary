@@ -28,7 +28,7 @@
                     {{ $message }}<br>
                   @endforeach
                 </div>
-              @endif 
+              @endif
               <div class="uk-form-controls">
                 <input class="uk-input" type="text" id="name" name="name" value="{{ $user->name }}">
               </div>
@@ -37,7 +37,7 @@
             <div class="uk-margin-medium">
               <label class="uk-form-label" for="profile_image">写真</label>
               @if ($user->profile_image)
-                <img src="/storage/images/{{ $user->profile_image }}" width="100px" height="100px" alt="avatar" style="border-radius: 50%;">
+                <img src="{{ $user->profile_image }}" width="100px" height="100px" alt="avatar" style="border-radius: 50%;">
                 <p>
                   <label class="uk-form-label" for="delete_image"><input class="uk-checkbox" type="checkbox" name="delete_image">現在の写真を削除する</label>
                 </p>
@@ -48,7 +48,7 @@
                     {{ $message }}<br>
                   @endforeach
                 </div>
-              @endif 
+              @endif
               <div class="uk-form-controls">
                 <input type="file" id="profile_image" name="profile_image" value="{{ $user->profile_image }}">
               </div>
@@ -62,7 +62,7 @@
                     {{ $message }}<br>
                   @endforeach
                 </div>
-              @endif 
+              @endif
               <div class="uk-form-controls">
                 <input class="uk-input" type="text" id="email" name="email" value="{{ $user->email }}">
               </div>
@@ -76,13 +76,13 @@
                     {{ $message }}<br>
                   @endforeach
                 </div>
-              @endif 
+              @endif
               <div class="uk-form-controls">
                   <textarea class="uk-textarea" rows="5" id="ideal" name="ideal">{{ $user->ideal }}</textarea>
               </div>
             </div>
             <input class="uk-input uk-button-primary uk-margin" type="submit" value="編集を確定">
-            
+
           </fieldset>
         </form>
         <button class="uk-input uk-button-default" id="cancel">

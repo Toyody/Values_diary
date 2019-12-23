@@ -8,9 +8,5 @@ use Faker\Generator as Faker;
 
 $factory->define(Value::class, function (Faker $faker) {
     return [
-        'user_id' => '1',
-        'value' => $faker->unique()->text($max = 10),
-        'reason' => $faker->text,
-        'created_at' => $faker->datetime($max = 'now', $timezone = date_default_timezone_get()),
     ];
 });

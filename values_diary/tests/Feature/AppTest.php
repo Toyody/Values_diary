@@ -4,17 +4,16 @@ declare(strict_types=1);
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
 use App\User;
 use Auth;
 use Illuminate\Support\Facades\Artisan;
+use Tests\TestCase;
 
 class AppTest extends TestCase
 {
     // 各テストメソッドの実行前に呼ばれる
     public function setUp(): void
     {
-
         parent::setUp();
 
         // 設定キャッシュをクリア
@@ -44,17 +43,15 @@ class AppTest extends TestCase
             ->assertSee('価値観日記へようこそ！');
     }
 
-
     public function test_ログインユーザーでabout画面の表示(): void
     {
         $response = $this
             ->actingAs(User::find(2))
             ->get(route('about'));
 
-        $response-> assertStatus(200)
+        $response->assertStatus(200)
             ->assertViewIs('about')
             ->assertSee('「価値観日記」とは、自分の価値観のために');
-
     }
 
     public function test_ログインユーザーで日記関連の画面を表示(): void
@@ -73,7 +70,6 @@ class AppTest extends TestCase
         $response->assertStatus(200)
             ->assertViewIs('posts.create')
             ->assertSee('日記を書く');
-
     }
 
     public function test_ログインユーザーで価値観関連の画面を表示(): void
@@ -92,7 +88,6 @@ class AppTest extends TestCase
         $response->assertStatus(200)
             ->assertViewIs('values.create')
             ->assertSee('価値観を追加');
-
     }
 
     public function test_ログインユーザーでグラフ画面の表示(): void
@@ -101,10 +96,9 @@ class AppTest extends TestCase
             ->actingAs(User::find(2))
             ->get(route('graph'));
 
-        $response-> assertStatus(200)
+        $response->assertStatus(200)
             ->assertViewIs('graph')
             ->assertSee('グラフ上にカーソルを乗せると');
-
     }
 
     public function test_ログインユーザーでプロフィール関連の画面を表示(): void
@@ -113,7 +107,7 @@ class AppTest extends TestCase
             ->actingAs(User::find(1)) // テストユーザーでは編集画面にいけないので他のアカウントでログイン
             ->get(route('users.show', ['user' => Auth::id()]));
 
-        $response-> assertStatus(200)
+        $response->assertStatus(200)
             ->assertViewIs('users.show')
             ->assertSee('名前');
 
@@ -123,10 +117,5 @@ class AppTest extends TestCase
         $response->assertStatus(200)
             ->assertViewIs('users.edit')
             ->assertSee('編集');
-
     }
-
-
-
-
 }

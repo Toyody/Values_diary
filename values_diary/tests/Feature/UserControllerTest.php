@@ -1,25 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
-use App\User;
-use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\UserRequest;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Arr;
-
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
+use Tests\TestCase;
 
 class UserControllerTest extends TestCase
 {
     // 各テストメソッドの実行前に呼ばれる
     public function setUp(): void
     {
-
         parent::setUp();
 
         // 設定キャッシュをクリア
@@ -27,18 +24,20 @@ class UserControllerTest extends TestCase
 
         Artisan::call('migrate:refresh');
         Artisan::call('db:seed');
-
     }
 
     /**
-     * カスタムリクエストのバリデーションテスト
+     * カスタムリクエストのバリデーションテスト.
      *
      * @param string 項目名
      * @param 値 stringまたはint
-     * @param boolean 期待値(true:バリデーションOK、false:バリデーションNG)
+     * @param bool 期待値(true:バリデーションOK、false:バリデーションNG)
+     * @param mixed $item
+     * @param mixed $data
+     * @param mixed $expect
      * @dataProvider dataproviderExample
      */
-    public function test_プロフィールのバリデーション($item, $data, $expect)
+    public function test_プロフィールのバリデーション($item, $data, $expect): void
     {
         //入力項目（$item）とその値($data)
         $dataList = [$item => $data];
@@ -108,7 +107,7 @@ class UserControllerTest extends TestCase
         ];
     }
 
-    public function test_プロフィール写真のアップロード()
+    public function test_プロフィール写真のアップロード(): void
     {
         Storage::fake('profile_images');
 

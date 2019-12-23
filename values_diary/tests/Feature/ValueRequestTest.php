@@ -1,16 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Feature;
 
-use Tests\TestCase;
-use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\ValueRequest;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Validator;
+use Tests\TestCase;
 
 class ValueControllerTest extends TestCase
 {
-
     // 各テストメソッドの実行前に呼ばれる
     public function setUp(): void
     {
@@ -24,14 +25,17 @@ class ValueControllerTest extends TestCase
     }
 
     /**
-     * カスタムリクエストのバリデーションテスト
+     * カスタムリクエストのバリデーションテスト.
      *
      * @param string 項目名
      * @param 値 stringまたはint
-     * @param boolean 期待値(true:バリデーションOK、false:バリデーションNG)
+     * @param bool 期待値(true:バリデーションOK、false:バリデーションNG)
+     * @param mixed $item
+     * @param mixed $data
+     * @param mixed $expect
      * @dataProvider dataproviderExample
      */
-    public function test_価値観のバリデーション($item, $data, $expect)
+    public function test_価値観のバリデーション($item, $data, $expect): void
     {
         //入力項目（$item）とその値($data)
         $dataList = [$item => $data];

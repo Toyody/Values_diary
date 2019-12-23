@@ -4,19 +4,17 @@ declare(strict_types=1);
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
-use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\PostRequest;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Validator;
+use Tests\TestCase;
 
 class PostControllerTest extends TestCase
 {
-
     // 各テストメソッドの実行前に呼ばれる
     public function setUp(): void
     {
-
         parent::setUp();
 
         // 設定キャッシュをクリア
@@ -24,18 +22,20 @@ class PostControllerTest extends TestCase
 
         Artisan::call('migrate:refresh');
         Artisan::call('db:seed');
-
     }
 
     /**
-     * カスタムリクエストのバリデーションテスト
+     * カスタムリクエストのバリデーションテスト.
      *
      * @param string 項目名
      * @param 値 stringまたはint
-     * @param boolean 期待値(true:バリデーションOK、false:バリデーションNG)
+     * @param bool 期待値(true:バリデーションOK、false:バリデーションNG)
+     * @param mixed $item
+     * @param mixed $data
+     * @param mixed $expect
      * @dataProvider dataproviderExample
      */
-    public function test_日記のバリデーション($item, $data, $expect)
+    public function test_日記のバリデーション($item, $data, $expect): void
     {
         //入力項目（$item）とその値($data)
         $dataList = [$item => $data];
@@ -65,9 +65,9 @@ class PostControllerTest extends TestCase
             ['value_tags', 'a', true],
 
             // 'actions_for_value.required' => '価値観に基づいた行動を入力してください'
-            ['actions_for_value', '' , false],
-            ['actions_for_value', null , false],
-            ['actions_for_value', 'a' , true],
+            ['actions_for_value', '', false],
+            ['actions_for_value', null, false],
+            ['actions_for_value', 'a', true],
 
             // 'actions_for_value.max' => '価値観に基づいた行動は1000文字以内で入力してください'
             // str_repeat('a', 1001)で、1001文字の文字列を作成(aが1001個できる)
@@ -91,5 +91,4 @@ class PostControllerTest extends TestCase
             ['memo', str_repeat('a', 1), true],
         ];
     }
-
 }

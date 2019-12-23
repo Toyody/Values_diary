@@ -93,7 +93,7 @@ class ValuesController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param Value $value
+     * @param Value                    $value
      * @return \Illuminate\Http\Response
      */
     public function update(ValueRequest $request, Value $value)

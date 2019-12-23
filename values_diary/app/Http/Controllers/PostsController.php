@@ -91,7 +91,7 @@ class PostsController extends Controller
         if (Auth::user()->id !== $post->user_id) {
             abort(403);
         }
-        
+
         $values = Value::where('user_id', Auth::id())->get();
 
         $data = [
@@ -127,7 +127,7 @@ class PostsController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param Post $post
+     * @param Post                     $post
      * @return \Illuminate\Http\Response
      */
     public function update(PostRequest $request, Post $post)

@@ -70,7 +70,7 @@ class UsersController extends Controller
         if ($user->id == 2) {
             return redirect()->route('users.show', ['user' => $user]);
         }
-        
+
         return view('users.edit', ['user' => $user]);
     }
 
@@ -78,7 +78,7 @@ class UsersController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param User $user
+     * @param User                     $user
      * @return \Illuminate\Http\Response
      */
     public function update(UserRequest $request, User $user)

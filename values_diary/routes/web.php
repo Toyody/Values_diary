@@ -19,12 +19,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-// SNSログインボタンからのリンク
-Route::get('/login/{social}', 'Auth\LoginController@socialLogin')->where('social', 'facebook|google');
-
-// コールバック用
-Route::get('/login/{social}/callback', 'Auth\LoginController@handleProviderCallback')->where('social', 'facebook|google');
-
 Route::middleware(['auth'])->group(function (): void {
     Route::get('/home', 'HomeController@index')->name('home');
 

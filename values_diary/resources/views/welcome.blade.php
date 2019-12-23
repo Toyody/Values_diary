@@ -68,7 +68,7 @@
                   かんたんログイン（テストユーザー）
                 </button>
               </form>
-              <div class="uk-child-width-1-2@m uk-grid-small uk-text-center uk-margin-small" uk-grid>
+              <div class="uk-child-width-1-2@s uk-grid-small uk-text-center uk-margin-small" uk-grid>
                 <div>
                   <a href="{{ route('login') }}" style="text-decoration: none;">
                     <button class="uk-button uk-width-1-1@m button-white">
@@ -83,16 +83,6 @@
                       <span class="uk-icon uk-margin-small-right" uk-icon="plus"></span>
                       新規登録
                     </button>
-                  </a>
-                </div>
-                <div>
-                  <a class="btn btn-block btn-social btn-facebook uk-text-center" href="{{ url('login/facebook')}}">
-                    <span class="fa fa-facebook"></span> Facebookでログイン
-                  </a>
-                </div>
-                <div>
-                  <a class="btn btn-block btn-social btn-google uk-text-center" href="{{ url('login/google')}}">
-                    <span class="fa fa-google"></span> Googleでログイン
                   </a>
                 </div>
               </div>

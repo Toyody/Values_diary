@@ -1,7 +1,8 @@
 <?php
 
-return [
+declare(strict_types=1);
 
+return [
     /*
     |--------------------------------------------------------------------------
     | Third Party Services
@@ -30,4 +31,15 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'facebook' => [
+        'client_id' => env('FACEBOOK_API_ID'),
+        'client_secret' => env('FACEBOOK_API_SECRET'),
+        'redirect' => env('FACEBOOK_CALLBACKURL'),
+    ],
+
+    'google' => [
+        'client_id' => env('GOOGLE_API_ID'),
+        'client_secret' => env('GOOGLE_API_SECRET'),
+        'redirect' => env('GOOGLE_CALLBACKURL'),
+    ],
 ];

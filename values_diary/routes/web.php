@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,4 +15,32 @@
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Auth::routes();
+
+Route::middleware(['auth'])->group(function (): void {
+    Route::get('/home', 'HomeController@index')->name('home');
+
+    Route::get('/about', 'AboutController@index')->name('about');
+
+    Route::get('/graph', 'GraphController@index')->name('graph');
+
+    Route::get('/word-search', 'SearchController@wordSearch')->name('word-search');
+
+    Route::get('/value-search', 'SearchController@valueSearch')->name('value-search');
+
+    Route::get('/date-search', 'SearchController@dateSearch')->name('date-search');
+
+    Route::resources([
+        'posts' => 'PostsController',
+        'values' => 'ValuesController',
+        'users' => 'UsersController',
+    ]);
+
+    Route::get('/trashed-posts', 'PostsController@trashed')->name('trashed-posts.index');
+
+    Route::post('/restore/{post}', 'PostsController@restoreTrashedPost')->name('posts.restore');
+
+    Route::post('/trashed-posts/clear', 'PostsController@clearTrashedPost')->name('trashed-posts.clear');
 });

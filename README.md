@@ -106,3 +106,9 @@ http://values-diary.herokuapp.com/
 - テストコード
 - UIkitを使ったスタイリッシュなUI設計
 - レスポンシブ対応
+
+## 時間がなくて到らなかった点
+- AWSの各種サービス(VPC,EC2,RDS,ELB,ACM,CloudFront)を使ったアーキテクチャ設計
+- 上記によるSSL化
+- SSL化が必須であるソーシャルログイン(Facebookログインなど)の機能実装
+- CircleCIを使ったCI/CDパイプラインの構築

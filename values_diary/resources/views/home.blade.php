@@ -11,7 +11,9 @@
               <p class="uk-text-bold uk-text-center uk-margin-medium-top">初めての方はこちらのページから</p>
               <a href="{{ route('about') }}" ><button class="uk-button uk-button-default uk-align-center"><span class="uk-icon uk-margin-small-right" uk-icon="info"></span>価値観日記とは</button></a>
             </div>
-            <img src="https://values-diary-portfolio.s3-ap-northeast-1.amazonaws.com/writing-1209121_1280.jpg" alt="writing">
+            <div class="uk-visible@s">
+                <img src="https://values-diary-portfolio.s3-ap-northeast-1.amazonaws.com/writing-1209121_1280.jpg" alt="writing">
+            </div>
         </div>
       </div>
     </div>

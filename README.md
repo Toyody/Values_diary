@@ -38,8 +38,9 @@
 ![プロフィール編集画面](user_edit_image.png)
 
 ### レスポンシブにも対応
-![レスポンシブ画面1](responsive1_image.png)
-![レスポンシブ画面2](responsive2_image.png)
+<img src="responsive1_image.png" width=20% height=20%>
+<br>
+<img src="responsive2_image.png" width=20% height=20%>
 
 ## 本番環境
 
@@ -126,6 +127,7 @@ http://values-diary.herokuapp.com/
   
 ## 特にこだわった点
 
+- 開発の際にmaster,develop,各featureブランチを使い分けることで擬似的に開発現場を再現(コミット履歴をご覧ください)
 - 論理削除機能(ゴミ箱機能)
 - 各検索機能
   - キーワード検索機能

@@ -1,6 +1,6 @@
 # スタンフォード推奨！価値観日記 (Values_diary)
 
-![トップ画面](welcome_image.png)
+![トップ画面](readme_images/welcome_image.png)
 
 ## 概要
 
@@ -17,30 +17,30 @@
 ## サンプル画像
 
 ### ログイン直後
-![home画面](home_image.png)
+![home画面](readme_images/home_image.png)
 
 ### 「価値観日記とは」ページ
-![about画面](about_image.png)
+![about画面](readme_images/about_image.png)
 
 ### 「日記」ページ
-![日記一覧画面](posts_index_image.png)
+![日記一覧画面](readme_images/posts_index_image.png)
 
 ### ゴミ箱内
-![ゴミ箱内画面](trashed_posts_image.png)
+![ゴミ箱内画面](readme_images/trashed_posts_image.png)
 
 ### 「価値観」ページ
-![価値観一覧画面](values_image.png)
+![価値観一覧画面](readme_images/values_image.png)
 
 ### グラフページ
-![グラフ画面](graph_image.png)
+![グラフ画面](readme_images/graph_image.png)
 
 ### プロフィール編集ページ
-![プロフィール編集画面](user_edit_image.png)
+![プロフィール編集画面](readme_images/user_edit_image.png)
 
 ### レスポンシブにも対応
-<img src="responsive1_image.png" width=20% height=20%>
+<img src="readme_images/responsive1_image.png" width=20% height=20%>
 <br>
-<img src="responsive2_image.png" width=20% height=20%>
+<img src="readme_images/responsive2_image.png" width=20% height=20%>
 
 ## 本番環境
 

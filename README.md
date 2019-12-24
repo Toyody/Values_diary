@@ -60,13 +60,13 @@ http://values-diary.herokuapp.com/
 - Laravel 6.5.2
 - MySQL 5.7.28
 - Nginx
-- phpmyadmin
+- phpMyAdmin
 - PHPUnit
 - PHP-cs-fixer
 - Laradock
 - Docker
 - Docker-compose
-- heroku
+- Heroku
 - AWS(S3)
 
 ### フロントエンド

@@ -76,6 +76,7 @@ http://values-diary.herokuapp.com/
 - UIkit
 - Bootstrap
 - FontAwesome
+- JavaScript
 - jQuery
 - Chart.js
 - flatpickr
